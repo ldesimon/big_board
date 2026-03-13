@@ -1,0 +1,13 @@
+{
+  "name": "ktaf-ai-big-board",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Screenshot capture script for the KTAF AI Big Board",
+  "scripts": {
+    "capture":       "node capture.js",
+    "capture:force": "node capture.js --force"
+  },
+  "dependencies": {
+    "playwright": "^1.42.0"
+  }
+}
