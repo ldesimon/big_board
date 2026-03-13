@@ -28,32 +28,22 @@
         "audience": null,
         "timeline": null,
         "nextSteps": [],
-        "productionAudit": [
-          "Already in Prod!",
-          "Additional Specs and Designing",
-          "Need Auth + Permissions",
-          "Need Hosting Configs"
-        ]
+        "productionAudit": []
       }
     },
     {
       "id": "1213642757278602",
-      "name": "Local LLM & Resource conservation approach",
+      "name": "Local LLM & Resource Conservation Approach",
       "stage": "Initial Brainstorm",
       "creator": "Charlie",
       "shareLink": null,
       "screenshot": null,
       "notes": {
-        "purpose": "We should be mindful of when we're using the right tool for the job. Hyperscale LLMs like Claude are deceptively simple. They're heavy machinery but have the appearance of a simple tool. Perhaps a locally deployed model is better suited for something like a chatbot. There's reason to believe that costs are artificially low because AI companies are not accountable for all of their resource consumption (electric, water). Therefore, we should strive to make prompts thorough and reduce round trips (i.e token usage). https://claude.ai/code/session_01M5qRBFEauSWmRNYTfgymGY https://claude.ai/share/992c2135-bc38-4170-baca-230893b4e2b8",
+        "purpose": "We should be mindful of using the right tool for the job. Hyperscale LLMs like Claude are heavy machinery with the appearance of a simple tool — a locally deployed model may be better suited for something like a chatbot. Costs may be artificially low as AI companies aren't fully accountable for resource consumption (electric, water). We should make prompts thorough and reduce round trips to minimize token usage.",
         "audience": null,
         "timeline": null,
         "nextSteps": [],
-        "productionAudit": [
-          "Already in Prod!",
-          "Additional Specs and Designing",
-          "Need Auth + Permissions",
-          "Need Hosting Configs"
-        ]
+        "productionAudit": []
       }
     },
     {
@@ -68,12 +58,7 @@
         "audience": null,
         "timeline": null,
         "nextSteps": [],
-        "productionAudit": [
-          "Already in Prod!",
-          "Additional Specs and Designing",
-          "Need Auth + Permissions",
-          "Need Hosting Configs"
-        ]
+        "productionAudit": []
       }
     },
     {
@@ -84,16 +69,16 @@
       "shareLink": null,
       "screenshot": null,
       "notes": {
-        "purpose": "The Seat Tracker is used by several teams to: Communicate staffing models for the year (Finance → School Leadership) Assign teammates to available seats (School Leadership) Track currently and potentially open seats to plan recruitment efforts (School Leadership → Talent Acquisition) Track progress to staffing open seats (Talent Acquisition) Track Renewal decisions and port data to Renewal Approval Tool (School Leadership → Talent Acquisition/Employee Relations) The data flows to a Tableau workbook where Talent Acquisition team can communicate hiring progress and track their goals over time. Data also flows to Renewal Approval Tool to create renewal offers and approval routing of teammates in positions for the following school year. Eliminate $10/user/month fee for use of AppSheet ($12,000 annually), which has been plagued with sync issues and lack of support and development from Google.",
+        "purpose": "Replace AppSheet ($12K/yr, plagued with sync issues) with an all-in-one app for communicating staffing models, assigning teammates to seats, tracking open positions for recruitment, and porting renewal decisions to the Renewal Approval Tool.",
         "audience": "Talent Acquisition, School Leadership, Finance, Employee Relations",
         "timeline": "October 2026 (launch of new recruitment year)",
         "nextSteps": [
-          "Feature: All-in-one data entry and dashboard (no more switching to Tableau for data viz)",
-          "Feature: Integrate with Renewal approval process (no more switching to another tool to audit salary/title changes and create renewal letters)",
-          "Next Steps: Connect with Talent Acquisition team to discuss AppSheet limitations/pain points and gauge wish list for next iteration of the app."
+          "All-in-one data entry and dashboard — no more switching to Tableau for viz",
+          "Integrate with Renewal approval process",
+          "Connect with Talent Acquisition to discuss AppSheet pain points and wish list"
         ],
         "productionAudit": [
-          "Prototype not yet built."
+          "Prototype not yet built"
         ]
       }
     },
@@ -105,18 +90,18 @@
       "shareLink": null,
       "screenshot": null,
       "notes": {
-        "purpose": "Replace current system of all different URLs for Tableau tools and Google sheets with one megasite for data access and visualizations created and version controlled in code using whatever tool is best for the job (charting libraries, Streamlit, Javascript) Offer new self service data tools pulling pre-defined metrics from Semantic Layer Offer new LLM \"talk to the data\" functionality to every dataset",
+        "purpose": "Replace all scattered Tableau URLs and Google Sheets with one site for data access and visualizations built in code using best-fit tools (charting libraries, Streamlit, JS). Add self-service tools from the Semantic Layer plus LLM 'talk to the data' for every dataset.",
         "audience": "Everyone",
-        "timeline": "Rolled out gradually as we build semantic layer over 2026-2027",
+        "timeline": "Rolled out gradually as semantic layer is built — 2026–2027",
         "nextSteps": [
-          "Next steps: Use Claude to supercharge semantic layer development (suggesting star schema design based on current reporting views, creating new dimensional and fact tables, creating yaml files for metadata and metric definitions).",
-          "Feature: Replace Tableau with self-hosted visualization and analysis website that reads from the semantic layer directly (no more individual calculations spread amongst various tools)",
-          "Feature: Ability to limit access to internal users but also create publicly available websites for outside users and the Board"
+          "Use Claude to supercharge semantic layer development: suggest star schema design, create fact/dim tables, write yaml metadata files",
+          "Replace Tableau with self-hosted visualization site reading from semantic layer directly",
+          "Create access tiers: internal users and public views for outside stakeholders and the Board"
         ],
         "productionAudit": [
-          "Semantic Layer Product Selection Happening < 1 week",
-          "Additional Specs and Designing",
-          "Need Auth + Permissions (including approved Job Groupings to stamp global access rules)",
+          "Semantic Layer product selection happening in < 1 week",
+          "Additional specs & designing needed",
+          "Need Auth + Permissions (including Job Groupings for global access rules)",
           "Decide on hosting platform"
         ]
       }
@@ -129,21 +114,21 @@
       "shareLink": null,
       "screenshot": null,
       "notes": {
-        "purpose": "Dramatically speed up process of converting wide reporting tables to star schema (facts and dims) by having Claude analyze the reporting views and suggest and create new facts and dims.",
+        "purpose": "Dramatically speed up converting wide reporting tables to star schema (facts and dims) by having Claude analyze reporting views and suggest or create new facts and dims.",
         "audience": "Data Team",
-        "timeline": "Rolled out gradually as we build semantic layer over 2026-2027",
+        "timeline": "Rolled out gradually as semantic layer is built — 2026–2027",
         "nextSteps": [
-          "Detailed Plan from Claude here: https://github.com/TEAMSchools/teamster/issues/3432"
+          "Meet as a team to validate Claude's output and finalize plan",
+          "Investigate Cube API compatibility — can we write yaml with schema and metadata directly to Cube UI?"
         ],
         "productionAudit": [
-          "All pieces in place, just need to meet as a team to validate output and plan.",
-          "Investigate Cube API compatibility and see if we can write our yaml with schema and metadata directly to Cube and then use Cube UI to build out metrics only."
+          "All pieces in place — needs team validation session"
         ]
       }
     },
     {
       "id": "1213643950740254",
-      "name": "Self-service data viz builder (upload your data and the tool builds some pretty vizzes)",
+      "name": "Self-Service Data Viz Builder",
       "stage": "Initial Brainstorm",
       "creator": "Kevin",
       "shareLink": null,
@@ -153,12 +138,7 @@
         "audience": null,
         "timeline": null,
         "nextSteps": [],
-        "productionAudit": [
-          "Already in Prod!",
-          "Additional Specs and Designing",
-          "Need Auth + Permissions",
-          "Need Hosting Configs"
-        ]
+        "productionAudit": []
       }
     },
     {
@@ -173,17 +153,12 @@
         "audience": null,
         "timeline": null,
         "nextSteps": [],
-        "productionAudit": [
-          "Already in Prod!",
-          "Additional Specs and Designing",
-          "Need Auth + Permissions",
-          "Need Hosting Configs"
-        ]
+        "productionAudit": []
       }
     },
     {
       "id": "1213643950740262",
-      "name": "Websites, not slide decks to explain",
+      "name": "Websites, Not Slide Decks to Explain",
       "stage": "Initial Brainstorm",
       "creator": "Kevin",
       "shareLink": null,
@@ -193,32 +168,22 @@
         "audience": null,
         "timeline": null,
         "nextSteps": [],
-        "productionAudit": [
-          "Already in Prod!",
-          "Additional Specs and Designing",
-          "Need Auth + Permissions",
-          "Need Hosting Configs"
-        ]
+        "productionAudit": []
       }
     },
     {
       "id": "1213643950740265",
-      "name": "landing page for data team apps/tools on kippteamandfamily.org",
+      "name": "Landing Page for Data Team Apps/Tools",
       "stage": "Initial Brainstorm",
       "creator": "Kevin",
       "shareLink": null,
       "screenshot": null,
       "notes": {
-        "purpose": null,
+        "purpose": "Maybe datatools.kippteamandfamily.org — hosting approach still TBD.",
         "audience": null,
         "timeline": null,
         "nextSteps": [],
-        "productionAudit": [
-          "Already in Prod!",
-          "Additional Specs and Designing",
-          "Need Auth + Permissions",
-          "Need Hosting Configs"
-        ]
+        "productionAudit": []
       }
     },
     {
@@ -233,12 +198,7 @@
         "audience": null,
         "timeline": null,
         "nextSteps": [],
-        "productionAudit": [
-          "Already in Prod!",
-          "Additional Specs and Designing",
-          "Need Auth + Permissions",
-          "Need Hosting Configs"
-        ]
+        "productionAudit": []
       }
     },
     {
@@ -264,23 +224,23 @@
       "shareLink": null,
       "screenshot": null,
       "notes": {
-        "purpose": "KIPP Forward team uses a Google sheet to track certain career prep milestones for alums and needed a solution that enabled roll-ups with updating student information from Salesforce (school attended, degree, expected graduation date). Originally going to replace Google sheet manual entry with an AppSheet. Used Claude to create a Next.js app that reads and writes to the database and has a nice clean UI to use.",
-        "audience": "KIPP Forward - Becky's team",
+        "purpose": "KIPP Forward team tracks career prep milestones for alums in a Google Sheet, needing roll-ups with Salesforce student data. Built with Claude as a Next.js app that reads and writes to the database with a clean UI — replacing a planned AppSheet solution.",
+        "audience": "KIPP Forward — Becky's team",
         "timeline": "March 2026",
         "nextSteps": [
           "Connect to OAuth for Google authentication",
-          "Create automation to add students with upcoming graduation dates to add to contact list.",
-          "Integrating data entry with analysis and visualizations"
+          "Create automation to add students with upcoming graduation dates to contact list",
+          "Integrate data entry with analysis and visualizations"
         ],
         "productionAudit": [
           "Need Auth + Permissions",
-          "Need Hosting Configs"
+          "Need Hosting Config"
         ]
       }
     },
     {
       "id": "1213630457614642",
-      "name": "Focus SIS - Centralized Database of FLDOE Data Fields",
+      "name": "Focus SIS — Centralized FLDOE Data Fields Database",
       "stage": "Prototype Build",
       "creator": "Laszlo",
       "shareLink": "https://ldesimon.github.io/host-public/fl_doe_glossary.html",
@@ -290,17 +250,12 @@
         "audience": null,
         "timeline": null,
         "nextSteps": [],
-        "productionAudit": [
-          "Already in Prod!",
-          "Additional Specs and Designing",
-          "Need Auth + Permissions",
-          "Need Hosting Configs"
-        ]
+        "productionAudit": []
       }
     },
     {
       "id": "1213643224056953",
-      "name": "Focus SIS - Project Manager [Plugin/Assistant]",
+      "name": "Focus SIS — Project Manager Plugin/Assistant",
       "stage": "Prototype Build",
       "creator": "Laszlo",
       "shareLink": null,
@@ -315,7 +270,7 @@
     },
     {
       "id": "1213643095194028",
-      "name": "Next Gen Data Tools: Code as BI Dashboard + Semantic Layer + LLM Chatbot",
+      "name": "Next Gen Data Tools: BI Dashboard + Semantic Layer + LLM Chatbot",
       "stage": "Prototype Build",
       "creator": "Kevin",
       "shareLink": null,
@@ -340,12 +295,12 @@
         "audience": null,
         "timeline": null,
         "nextSteps": [],
-        "productionAudit": []
+        "productionAudit": ["Already in Production"]
       }
     },
     {
       "id": "1213630457614603",
-      "name": "Focus SIS - Splash Page Website",
+      "name": "Focus SIS — Splash Page Website",
       "stage": "In Production",
       "creator": "Laszlo",
       "shareLink": "https://ldesimon.github.io/host-public/focus-launch.html",
@@ -355,12 +310,12 @@
         "audience": null,
         "timeline": null,
         "nextSteps": [],
-        "productionAudit": []
+        "productionAudit": ["Already in Production"]
       }
     },
     {
       "id": "1213630457614638",
-      "name": "KTAF Data Documentation - Developers Doc Hub",
+      "name": "KTAF Data Documentation — Developers Doc Hub",
       "stage": "In Production",
       "creator": "Charlie",
       "shareLink": "https://teamschools.github.io/teamster/",
@@ -370,27 +325,22 @@
         "audience": null,
         "timeline": null,
         "nextSteps": [],
-        "productionAudit": []
+        "productionAudit": ["Already in Production"]
       }
     },
     {
       "id": "1213630457614656",
-      "name": "KTAF Data Documentation - Automations Matrix",
+      "name": "KTAF Data Documentation — Automations Matrix",
       "stage": "In Production",
       "creator": "Charlie",
       "shareLink": "https://teamschools.github.io/teamster/reference/automations/",
       "screenshot": null,
       "notes": {
-        "purpose": "Central place to answer question: what is the schedule for refreshes across out data infrastructure",
+        "purpose": "Central place to answer: what is the refresh schedule across our data infrastructure?",
         "audience": null,
         "timeline": null,
         "nextSteps": [],
-        "productionAudit": [
-          "Already in Prod!",
-          "Additional Specs and Designing",
-          "Need Auth + Permissions",
-          "Need Hosting Configs"
-        ]
+        "productionAudit": ["Already in Production"]
       }
     },
     {
@@ -405,12 +355,7 @@
         "audience": null,
         "timeline": null,
         "nextSteps": [],
-        "productionAudit": [
-          "Already in Prod!",
-          "Additional Specs and Designing",
-          "Need Auth + Permissions",
-          "Need Hosting Configs"
-        ]
+        "productionAudit": ["Already in Production"]
       }
     }
   ]
