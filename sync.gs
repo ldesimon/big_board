@@ -17,8 +17,8 @@
  */
 
 // ─── CONFIG — update these before first sync ─────────────────────────────────
-const GH_OWNER  = 'YOUR_GITHUB_USERNAME_OR_ORG';  // e.g. 'teamschools'
-const GH_REPO   = 'big-board';                      // your GitHub repo name
+const GH_OWNER  = 'ldesimon';  // e.g. 'teamschools'
+const GH_REPO   = 'big_board';                      // your GitHub repo name
 const GH_BRANCH = 'main';
 const GH_FILE   = 'data.json';
 const SHEET_GID = '1836632150';                     // from the GSheet URL (gid=...)
