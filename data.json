@@ -1,0 +1,362 @@
+{
+  "lastUpdated": "2026-03-13",
+  "items": [
+    {
+      "id": "1213643095194034",
+      "name": "[Finalsite Integrations: Read/Write w/ PS and Focus]",
+      "stage": "Initial Brainstorm",
+      "creator": "Laszlo",
+      "shareLink": null,
+      "screenshot": null,
+      "notes": {
+        "purpose": null,
+        "audience": null,
+        "timeline": null,
+        "nextSteps": [],
+        "productionAudit": []
+      }
+    },
+    {
+      "id": "1213641327207946",
+      "name": "Ops ES/MS Student Scheduler (GSheet Prep or App?)",
+      "stage": "Initial Brainstorm",
+      "creator": "Jabari",
+      "shareLink": "https://docs.google.com/spreadsheets/d/1k_O9KlDWzitCZ5QIZMh5HAj17Bam50a9Cpvh79kcrBA/edit?gid=905638841#gid=905638841",
+      "screenshot": null,
+      "notes": {
+        "purpose": null,
+        "audience": null,
+        "timeline": null,
+        "nextSteps": [],
+        "productionAudit": []
+      }
+    },
+    {
+      "id": "1213642757278602",
+      "name": "Local LLM & Resource Conservation Approach",
+      "stage": "Initial Brainstorm",
+      "creator": "Charlie",
+      "shareLink": null,
+      "screenshot": null,
+      "notes": {
+        "purpose": "We should be mindful of using the right tool for the job. Hyperscale LLMs like Claude are heavy machinery with the appearance of a simple tool — a locally deployed model may be better suited for something like a chatbot. Costs may be artificially low as AI companies aren't fully accountable for resource consumption (electric, water). We should make prompts thorough and reduce round trips to minimize token usage.",
+        "audience": null,
+        "timeline": null,
+        "nextSteps": [],
+        "productionAudit": []
+      }
+    },
+    {
+      "id": "1213642757278597",
+      "name": "Spec-Driven Development",
+      "stage": "Initial Brainstorm",
+      "creator": "Charlie",
+      "shareLink": null,
+      "screenshot": null,
+      "notes": {
+        "purpose": null,
+        "audience": null,
+        "timeline": null,
+        "nextSteps": [],
+        "productionAudit": []
+      }
+    },
+    {
+      "id": "1213641001883174",
+      "name": "Next Generation Seat Tracker + Renewal App",
+      "stage": "Initial Brainstorm",
+      "creator": "Cristina",
+      "shareLink": null,
+      "screenshot": null,
+      "notes": {
+        "purpose": "Replace AppSheet ($12K/yr, plagued with sync issues) with an all-in-one app for communicating staffing models, assigning teammates to seats, tracking open positions for recruitment, and porting renewal decisions to the Renewal Approval Tool.",
+        "audience": "Talent Acquisition, School Leadership, Finance, Employee Relations",
+        "timeline": "October 2026 (launch of new recruitment year)",
+        "nextSteps": [
+          "All-in-one data entry and dashboard — no more switching to Tableau for viz",
+          "Integrate with Renewal approval process",
+          "Connect with Talent Acquisition to discuss AppSheet pain points and wish list"
+        ],
+        "productionAudit": [
+          "Prototype not yet built"
+        ]
+      }
+    },
+    {
+      "id": "1213641001883177",
+      "name": "Replacing Tableau with Data Portal",
+      "stage": "Initial Brainstorm",
+      "creator": "Cristina",
+      "shareLink": null,
+      "screenshot": null,
+      "notes": {
+        "purpose": "Replace all scattered Tableau URLs and Google Sheets with one site for data access and visualizations built in code using best-fit tools (charting libraries, Streamlit, JS). Add self-service tools from the Semantic Layer plus LLM 'talk to the data' for every dataset.",
+        "audience": "Everyone",
+        "timeline": "Rolled out gradually as semantic layer is built — 2026–2027",
+        "nextSteps": [
+          "Use Claude to supercharge semantic layer development: suggest star schema design, create fact/dim tables, write yaml metadata files",
+          "Replace Tableau with self-hosted visualization site reading from semantic layer directly",
+          "Create access tiers: internal users and public views for outside stakeholders and the Board"
+        ],
+        "productionAudit": [
+          "Semantic Layer product selection happening in < 1 week",
+          "Additional specs & designing needed",
+          "Need Auth + Permissions (including Job Groupings for global access rules)",
+          "Decide on hosting platform"
+        ]
+      }
+    },
+    {
+      "id": "1213641001883186",
+      "name": "Supercharging Semantic Layer Development",
+      "stage": "Initial Brainstorm",
+      "creator": "Cristina",
+      "shareLink": null,
+      "screenshot": null,
+      "notes": {
+        "purpose": "Dramatically speed up converting wide reporting tables to star schema (facts and dims) by having Claude analyze reporting views and suggest or create new facts and dims.",
+        "audience": "Data Team",
+        "timeline": "Rolled out gradually as semantic layer is built — 2026–2027",
+        "nextSteps": [
+          "Meet as a team to validate Claude's output and finalize plan",
+          "Investigate Cube API compatibility — can we write yaml with schema and metadata directly to Cube UI?"
+        ],
+        "productionAudit": [
+          "All pieces in place — needs team validation session"
+        ]
+      }
+    },
+    {
+      "id": "1213643950740254",
+      "name": "Self-Service Data Viz Builder",
+      "stage": "Initial Brainstorm",
+      "creator": "Kevin",
+      "shareLink": null,
+      "screenshot": null,
+      "notes": {
+        "purpose": null,
+        "audience": null,
+        "timeline": null,
+        "nextSteps": [],
+        "productionAudit": []
+      }
+    },
+    {
+      "id": "1213643950740259",
+      "name": "Next Gen BI-As-Code Dashboarding",
+      "stage": "Initial Brainstorm",
+      "creator": "Kevin",
+      "shareLink": null,
+      "screenshot": null,
+      "notes": {
+        "purpose": null,
+        "audience": null,
+        "timeline": null,
+        "nextSteps": [],
+        "productionAudit": []
+      }
+    },
+    {
+      "id": "1213643950740262",
+      "name": "Websites, Not Slide Decks to Explain",
+      "stage": "Initial Brainstorm",
+      "creator": "Kevin",
+      "shareLink": null,
+      "screenshot": null,
+      "notes": {
+        "purpose": null,
+        "audience": null,
+        "timeline": null,
+        "nextSteps": [],
+        "productionAudit": []
+      }
+    },
+    {
+      "id": "1213643950740265",
+      "name": "Landing Page for Data Team Apps/Tools",
+      "stage": "Initial Brainstorm",
+      "creator": "Kevin",
+      "shareLink": null,
+      "screenshot": null,
+      "notes": {
+        "purpose": "Maybe datatools.kippteamandfamily.org — hosting approach still TBD.",
+        "audience": null,
+        "timeline": null,
+        "nextSteps": [],
+        "productionAudit": []
+      }
+    },
+    {
+      "id": "1213643095194037",
+      "name": "Ops Walkthrough Custom Form",
+      "stage": "Prototype Build",
+      "creator": "Ryan",
+      "shareLink": "https://rhill-sys.github.io/Ops-Inspection-Form-3/",
+      "screenshot": null,
+      "notes": {
+        "purpose": null,
+        "audience": null,
+        "timeline": null,
+        "nextSteps": [],
+        "productionAudit": []
+      }
+    },
+    {
+      "id": "1213643224056949",
+      "name": "NJSLA Test Prep Generator",
+      "stage": "Prototype Build",
+      "creator": "Ryan",
+      "shareLink": "https://rhill-sys.github.io/NJSLA-Math-Creator/",
+      "screenshot": null,
+      "notes": {
+        "purpose": null,
+        "audience": null,
+        "timeline": null,
+        "nextSteps": [],
+        "productionAudit": []
+      }
+    },
+    {
+      "id": "1213641001883168",
+      "name": "KIPP Forward Tracker App",
+      "stage": "Prototype Build",
+      "creator": "Cristina",
+      "shareLink": null,
+      "screenshot": null,
+      "notes": {
+        "purpose": "KIPP Forward team tracks career prep milestones for alums in a Google Sheet, needing roll-ups with Salesforce student data. Built with Claude as a Next.js app that reads and writes to the database with a clean UI — replacing a planned AppSheet solution.",
+        "audience": "KIPP Forward — Becky's team",
+        "timeline": "March 2026",
+        "nextSteps": [
+          "Connect to OAuth for Google authentication",
+          "Create automation to add students with upcoming graduation dates to contact list",
+          "Integrate data entry with analysis and visualizations"
+        ],
+        "productionAudit": [
+          "Need Auth + Permissions",
+          "Need Hosting Config"
+        ]
+      }
+    },
+    {
+      "id": "1213630457614642",
+      "name": "Focus SIS — Centralized FLDOE Data Fields Database",
+      "stage": "Prototype Build",
+      "creator": "Laszlo",
+      "shareLink": "https://ldesimon.github.io/host-public/fl_doe_glossary.html",
+      "screenshot": null,
+      "notes": {
+        "purpose": null,
+        "audience": null,
+        "timeline": null,
+        "nextSteps": [],
+        "productionAudit": []
+      }
+    },
+    {
+      "id": "1213643224056953",
+      "name": "Focus SIS — Project Manager Plugin/Assistant",
+      "stage": "Prototype Build",
+      "creator": "Laszlo",
+      "shareLink": null,
+      "screenshot": null,
+      "notes": {
+        "purpose": null,
+        "audience": null,
+        "timeline": null,
+        "nextSteps": [],
+        "productionAudit": []
+      }
+    },
+    {
+      "id": "1213643095194028",
+      "name": "Next Gen Data Tools: BI Dashboard + Semantic Layer + LLM Chatbot",
+      "stage": "Prototype Build",
+      "creator": "Kevin",
+      "shareLink": null,
+      "screenshot": null,
+      "notes": {
+        "purpose": null,
+        "audience": null,
+        "timeline": null,
+        "nextSteps": [],
+        "productionAudit": []
+      }
+    },
+    {
+      "id": "1213643224056957",
+      "name": "Job Groupings + Data Governance Website",
+      "stage": "In Production",
+      "creator": "Kevin",
+      "shareLink": "https://teamschools.github.io/job_groupings/website/explorer.html",
+      "screenshot": null,
+      "notes": {
+        "purpose": null,
+        "audience": null,
+        "timeline": null,
+        "nextSteps": [],
+        "productionAudit": ["Already in Production"]
+      }
+    },
+    {
+      "id": "1213630457614603",
+      "name": "Focus SIS — Splash Page Website",
+      "stage": "In Production",
+      "creator": "Laszlo",
+      "shareLink": "https://ldesimon.github.io/host-public/focus-launch.html",
+      "screenshot": null,
+      "notes": {
+        "purpose": null,
+        "audience": null,
+        "timeline": null,
+        "nextSteps": [],
+        "productionAudit": ["Already in Production"]
+      }
+    },
+    {
+      "id": "1213630457614638",
+      "name": "KTAF Data Documentation — Developers Doc Hub",
+      "stage": "In Production",
+      "creator": "Charlie",
+      "shareLink": "https://teamschools.github.io/teamster/",
+      "screenshot": null,
+      "notes": {
+        "purpose": null,
+        "audience": null,
+        "timeline": null,
+        "nextSteps": [],
+        "productionAudit": ["Already in Production"]
+      }
+    },
+    {
+      "id": "1213630457614656",
+      "name": "KTAF Data Documentation — Automations Matrix",
+      "stage": "In Production",
+      "creator": "Charlie",
+      "shareLink": "https://teamschools.github.io/teamster/reference/automations/",
+      "screenshot": null,
+      "notes": {
+        "purpose": "Central place to answer: what is the refresh schedule across our data infrastructure?",
+        "audience": null,
+        "timeline": null,
+        "nextSteps": [],
+        "productionAudit": ["Already in Production"]
+      }
+    },
+    {
+      "id": "1213630457614667",
+      "name": "Crisis Comms Assistant",
+      "stage": "In Production",
+      "creator": "Sophie",
+      "shareLink": "https://crisis-comms-tool-updated.vercel.app/",
+      "screenshot": null,
+      "notes": {
+        "purpose": null,
+        "audience": null,
+        "timeline": null,
+        "nextSteps": [],
+        "productionAudit": ["Already in Production"]
+      }
+    }
+  ]
+}
