@@ -833,5 +833,58 @@
     "share_link": "",
     "published": true,
     "submitted_at": "2026-03-19"
+  },
+  {
+    "id": "p027",
+    "project_name": "Idea-to-Report Protocol",
+    "one_liner": "Will support accelerating, standardizing, and streamlining the process of taking an organizational need and converting into an appropriate report (app, Tableau, Google Sheet, other).",
+    "stage": "Initial Idea",
+    "audience": [
+      "My team",
+      "Whole org"
+    ],
+    "department": [
+      "Academics",
+      "Operations",
+      "Finance",
+      "HR & Ops",
+      "Talent",
+      "DTI",
+      "KIPP Forward",
+      "TC"
+    ],
+    "department_other": "",
+    "success_story": "We will minimize roadblocks to creating and iterating on a data report request by using AI to help us rapidly prototype, convert business needs policy documents to actionable coding next steps, help analyze the quality of data and data models to highlight possible issues before they can derail a project, and overall make the process more transparent and accessible to a larger number of stakeholders.",
+    "savings_dollars": "",
+    "savings_hours": "",
+    "savings_replacing": "A mismatch system of disconnected/siloed Google Docs, Slack conversations, meetings, emails.",
+    "savings_unknown": false,
+    "ai_tools": [
+      "Claude"
+    ],
+    "ai_tools_other": "",
+    "data_context": [
+      "Project files (emails, memos, docs)",
+      "Data files (static, downloaded manually)",
+      "Connected data (live feed or API)",
+      "Claude plugins or skills"
+    ],
+    "data_context_other": "",
+    "delivery_type": [
+      "A script or workflow",
+      "A document",
+      "An interactive app",
+      "Code (script, notebook, integration)",
+      "A Claude artifact"
+    ],
+    "delivery_type_other": "",
+    "next_steps": [
+      "Not sure yet"
+    ],
+    "next_steps_notes": "",
+    "creator_name": "Gaby R.",
+    "share_link": "",
+    "published": true,
+    "submitted_at": "2026-03-19"
   }
 ]
