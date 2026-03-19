@@ -25,9 +25,7 @@
     ],
     "data_context_other": "Reporting views",
     "delivery_type": [
-      "Code (script",
-      "notebook",
-      "integration)"
+      "Code (script, notebook, integration)"
     ],
     "delivery_type_other": "",
     "next_steps": [
@@ -97,8 +95,7 @@
     ],
     "ai_tools_other": "",
     "data_context": [
-      "Data files (static",
-      "downloaded manually)"
+      "Data files (static, downloaded manually)"
     ],
     "data_context_other": "900+ item bank",
     "delivery_type": [
@@ -134,8 +131,7 @@
     ],
     "ai_tools_other": "",
     "data_context": [
-      "Data files (static",
-      "downloaded manually)"
+      "Data files (static, downloaded manually)"
     ],
     "data_context_other": "600+ FLDOE state PDFs",
     "delivery_type": [
