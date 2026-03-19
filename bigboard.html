@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Big Board — KTAF AI Projects</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Design tokens ──────────────────────────────────────────────── */
+    :root {
+      --indigo:   #001E62;
+      --indigo-2: #002d8a;
+      --orange:   #F9A21A;
+      --orange-2: #e8920a;
+      --blue:     #57C0E9;
+      --blue-2:   #3aadd8;
+      --white:    #FFFFFF;
+
+      --g1: #F8F9FB;
+      --g2: #EDEEF2;
+      --g3: #D0D3DC;
+      --g4: #8A8FA2;
+      --g5: #3D4259;
+
+      --sidebar-w: 256px;
+      --drawer-w:  52vw;
+      --header-h:  56px;
+
+      --r-sm: 6px;
+      --r-md: 10px;
+      --r-lg: 14px;
+
+      --shadow-card: 0 1px 3px rgba(0,30,98,.06), 0 4px 16px rgba(0,30,98,.06);
+      --shadow-drawer: -4px 0 32px rgba(0,30,98,.14);
+
+      --font-head: 'Barlow Condensed', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+
+      --ease: cubic-bezier(.22,.68,0,1.2);
+    }
+
+    /* ── Reset ──────────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; }
+    body {
+      font-family: var(--font-body);
+      background: var(--g1);
+      color: var(--g5);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { cursor: pointer; font-family: inherit; border: none; background: none; }
+
+    /* ── Header ─────────────────────────────────────────────────────── */
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      height: var(--header-h);
+      background: rgba(255,255,255,.94);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--g2);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+    }
+    .brand {
+      font-family: var(--font-head);
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--indigo);
+      letter-spacing: .01em;
+    }
+    .brand span { color: var(--orange); }
+    .header-right { display: flex; align-items: center; gap: 12px; }
+    .hdr-link {
+      font-size: .8rem;
+      font-weight: 500;
+      color: var(--g4);
+      transition: color .15s;
+    }
+    .hdr-link:hover { color: var(--indigo); }
+    .btn-submit {
+      height: 34px;
+      padding: 0 14px;
+      background: var(--orange);
+      color: var(--indigo);
+      font-weight: 700;
+      font-size: .8rem;
+      border-radius: var(--r-sm);
+      transition: background .15s;
+    }
+    .btn-submit:hover { background: var(--orange-2); }
+
+    /* ── Layout shell ───────────────────────────────────────────────── */
+    .shell {
+      display: flex;
+      flex: 1;
+      min-height: 0;
+    }
+
+    /* ── Sidebar ────────────────────────────────────────────────────── */
+    .sidebar {
+      width: var(--sidebar-w);
+      flex-shrink: 0;
+      background: var(--white);
+      border-right: 1px solid var(--g2);
+      overflow-y: auto;
+      padding: 20px 0 40px;
+      position: sticky;
+      top: var(--header-h);
+      height: calc(100vh - var(--header-h));
+    }
+
+    .sidebar-top {
+      padding: 0 16px 16px;
+      border-bottom: 1px solid var(--g2);
+      margin-bottom: 8px;
+    }
+    .search-wrap {
+      position: relative;
+    }
+    .search-wrap svg {
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--g4);
+      pointer-events: none;
+    }
+    #search {
+      width: 100%;
+      height: 36px;
+      padding: 0 10px 0 34px;
+      border: 1.5px solid var(--g3);
+      border-radius: var(--r-sm);
+      font-family: var(--font-body);
+      font-size: .85rem;
+      color: var(--g5);
+      background: var(--g1);
+      transition: border-color .15s;
+      outline: none;
+    }
+    #search:focus { border-color: var(--blue); background: var(--white); }
+    #search::placeholder { color: var(--g4); }
+
+    .active-tags {
+      margin-top: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      min-height: 0;
+    }
+    .active-tag {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-family: var(--font-mono);
+      font-size: .7rem;
+      background: var(--indigo);
+      color: var(--white);
+      padding: 3px 7px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: background .15s;
+    }
+    .active-tag:hover { background: var(--g5); }
+    .active-tag .x { font-size: .8rem; line-height: 1; opacity: .7; }
+
+    .clear-all {
+      display: none;
+      margin-top: 8px;
+      font-size: .75rem;
+      color: var(--g4);
+      text-decoration: underline;
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+    }
+    .clear-all:hover { color: var(--g5); }
+    .clear-all.visible { display: inline; }
+
+    /* Filter groups */
+    .filter-group {
+      padding: 8px 0;
+      border-bottom: 1px solid var(--g2);
+    }
+    .filter-group:last-child { border-bottom: none; }
+
+    .fg-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 4px 16px 4px;
+      cursor: pointer;
+      user-select: none;
+    }
+    .fg-label {
+      font-family: var(--font-mono);
+      font-size: .7rem;
+      font-weight: 500;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--g4);
+    }
+    .fg-chevron {
+      color: var(--g4);
+      transition: transform .2s;
+    }
+    .filter-group.open .fg-chevron { transform: rotate(180deg); }
+
+    .fg-options {
+      display: none;
+      flex-direction: column;
+      gap: 1px;
+      padding: 4px 0 6px;
+    }
+    .filter-group.open .fg-options { display: flex; }
+
+    .filter-opt {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 16px;
+      cursor: pointer;
+      border-radius: 0;
+      transition: background .1s;
+      font-size: .85rem;
+    }
+    .filter-opt:hover { background: var(--g1); }
+    .filter-opt.selected {
+      background: rgba(0,30,98,.05);
+      font-weight: 600;
+      color: var(--indigo);
+    }
+    .filter-opt .opt-dot {
+      width: 14px;
+      height: 14px;
+      border: 1.5px solid var(--g3);
+      border-radius: 3px;
+      flex-shrink: 0;
+      transition: background .15s, border-color .15s;
+    }
+    .filter-opt.selected .opt-dot {
+      background: var(--indigo);
+      border-color: var(--indigo);
+    }
+    .filter-opt .opt-count {
+      margin-left: auto;
+      font-size: .72rem;
+      font-family: var(--font-mono);
+      color: var(--g4);
+    }
+
+    /* ── Main content ───────────────────────────────────────────────── */
+    .main {
+      flex: 1;
+      min-width: 0;
+      padding: 24px;
+    }
+
+    .results-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+    .results-count {
+      font-size: .85rem;
+      color: var(--g4);
+    }
+    .results-count strong { color: var(--g5); }
+
+    /* Project grid */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 16px;
+    }
+
+    /* Project card */
+    .card {
+      background: var(--white);
+      border: 1.5px solid var(--g2);
+      border-radius: var(--r-md);
+      padding: 18px 18px 14px;
+      cursor: pointer;
+      transition: border-color .15s, box-shadow .15s, transform .15s;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .card:hover {
+      border-color: var(--blue);
+      box-shadow: var(--shadow-card);
+      transform: translateY(-1px);
+    }
+    .card.active {
+      border-color: var(--indigo);
+      box-shadow: 0 0 0 2px rgba(0,30,98,.12);
+    }
+
+    .card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 8px;
+    }
+    .card-name {
+      font-family: var(--font-head);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--indigo);
+      letter-spacing: .01em;
+      line-height: 1.25;
+    }
+    .stage-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-top: 4px;
+    }
+
+    .card-oneliner {
+      font-size: .85rem;
+      color: var(--g5);
+      line-height: 1.5;
+    }
+
+    .card-meta {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .meta-who {
+      font-size: .75rem;
+      color: var(--g4);
+    }
+
+    .card-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-top: 2px;
+    }
+    .chip {
+      font-family: var(--font-mono);
+      font-size: .68rem;
+      padding: 3px 7px;
+      border-radius: 20px;
+      font-weight: 400;
+      white-space: nowrap;
+    }
+    .chip-blue   { background: rgba(87,192,233,.15); color: var(--blue-2); }
+    .chip-indigo { background: rgba(0,30,98,.08);    color: var(--indigo); }
+    .chip-orange { background: rgba(249,162,26,.15); color: #b07000; }
+    .chip-grey   { background: var(--g2);            color: var(--g4); }
+
+    /* Stage color map */
+    .dot-idea     { background: var(--g3); }
+    .dot-early    { background: var(--blue); }
+    .dot-proto    { background: var(--orange); }
+    .dot-in-use   { background: #34c759; }
+    .dot-paused   { background: #ff9500; }
+
+    /* Empty state */
+    .empty-state {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 24px;
+      text-align: center;
+      gap: 12px;
+      grid-column: 1 / -1;
+    }
+    .empty-state.visible { display: flex; }
+    .empty-state p { color: var(--g4); font-size: .9rem; }
+    .empty-state strong { color: var(--g5); font-size: 1.1rem; }
+
+    /* ── Drawer overlay ─────────────────────────────────────────────── */
+    .overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,30,98,.18);
+      z-index: 300;
+      opacity: 0;
+      transition: opacity .2s;
+    }
+    .overlay.open { display: block; opacity: 1; }
+
+    /* ── Detail drawer ──────────────────────────────────────────────── */
+    .drawer {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: var(--drawer-w);
+      max-width: 720px;
+      background: var(--white);
+      box-shadow: var(--shadow-drawer);
+      z-index: 400;
+      display: flex;
+      flex-direction: column;
+      transform: translateX(100%);
+      transition: transform .28s var(--ease);
+      overflow: hidden;
+    }
+    .drawer.open { transform: translateX(0); }
+
+    .drawer-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 22px 24px 18px;
+      border-bottom: 1px solid var(--g2);
+      flex-shrink: 0;
+    }
+    .drawer-title {
+      font-family: var(--font-head);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--indigo);
+      letter-spacing: .01em;
+      line-height: 1.2;
+    }
+    .drawer-close {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--g1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--g4);
+      transition: background .15s, color .15s;
+      margin-top: 2px;
+    }
+    .drawer-close:hover { background: var(--g2); color: var(--g5); }
+
+    .drawer-body {
+      overflow-y: auto;
+      padding: 24px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    /* Drawer sections */
+    .d-section {}
+    .d-label {
+      font-family: var(--font-mono);
+      font-size: .7rem;
+      font-weight: 500;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--g4);
+      margin-bottom: 6px;
+    }
+    .d-value {
+      font-size: .9rem;
+      color: var(--g5);
+      line-height: 1.6;
+    }
+    .d-value.story {
+      font-style: italic;
+      background: var(--g1);
+      border-left: 3px solid var(--blue);
+      padding: 10px 14px;
+      border-radius: 0 var(--r-sm) var(--r-sm) 0;
+    }
+    .d-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+
+    .drawer-launch {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      height: 38px;
+      padding: 0 16px;
+      background: var(--orange);
+      color: var(--indigo);
+      font-weight: 700;
+      font-size: .85rem;
+      border-radius: var(--r-sm);
+      transition: background .15s;
+      text-decoration: none;
+    }
+    .drawer-launch:hover { background: var(--orange-2); }
+    .drawer-launch.hidden { display: none; }
+
+    .drawer-meta-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .drawer-meta-row .stage-badge {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: .8rem;
+      color: var(--g5);
+    }
+
+    .d-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .d-submitted {
+      font-size: .75rem;
+      color: var(--g4);
+      font-family: var(--font-mono);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <a href="index.html" class="brand">Big<span>Board</span></a>
+    <div class="header-right">
+      <a href="index.html" class="hdr-link">← What is this?</a>
+      <a href="form.html" class="btn-submit">Submit a project</a>
+    </div>
+  </header>
+
+  <!-- Overlay -->
+  <div class="overlay" id="overlay"></div>
+
+  <!-- Shell -->
+  <div class="shell">
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+
+      <div class="sidebar-top">
+        <div class="search-wrap">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+          <input type="text" id="search" placeholder="Search projects…" autocomplete="off" />
+        </div>
+
+        <div class="active-tags" id="activeTags"></div>
+        <button class="clear-all" id="clearAll">Clear all filters</button>
+      </div>
+
+      <!-- Filter: Stage -->
+      <div class="filter-group open" data-dim="stage">
+        <div class="fg-header">
+          <span class="fg-label">Stage</span>
+          <svg class="fg-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="fg-options" id="opts-stage"></div>
+      </div>
+
+      <!-- Filter: Audience -->
+      <div class="filter-group open" data-dim="audience">
+        <div class="fg-header">
+          <span class="fg-label">Audience</span>
+          <svg class="fg-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="fg-options" id="opts-audience"></div>
+      </div>
+
+      <!-- Filter: Department -->
+      <div class="filter-group open" data-dim="department">
+        <div class="fg-header">
+          <span class="fg-label">Department</span>
+          <svg class="fg-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="fg-options" id="opts-department"></div>
+      </div>
+
+      <!-- Filter: AI Tools -->
+      <div class="filter-group open" data-dim="ai_tools">
+        <div class="fg-header">
+          <span class="fg-label">AI Tools</span>
+          <svg class="fg-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="fg-options" id="opts-ai_tools"></div>
+      </div>
+
+      <!-- Filter: Delivery Type -->
+      <div class="filter-group" data-dim="delivery_type">
+        <div class="fg-header">
+          <span class="fg-label">Delivery Type</span>
+          <svg class="fg-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="fg-options" id="opts-delivery_type"></div>
+      </div>
+
+      <!-- Filter: Next Steps -->
+      <div class="filter-group" data-dim="next_steps">
+        <div class="fg-header">
+          <span class="fg-label">Next Steps</span>
+          <svg class="fg-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="fg-options" id="opts-next_steps"></div>
+      </div>
+
+    </aside><!-- /sidebar -->
+
+    <!-- Main grid area -->
+    <main class="main">
+      <div class="results-bar">
+        <div class="results-count" id="resultsCount">Loading…</div>
+      </div>
+      <div class="grid" id="grid">
+        <div class="empty-state" id="emptyState">
+          <strong>No projects match</strong>
+          <p>Try adjusting your filters or clearing the search.</p>
+          <button onclick="clearAllFilters()" style="margin-top:8px;font-size:.85rem;color:var(--indigo);text-decoration:underline;background:none;border:none;cursor:pointer;">Clear everything</button>
+        </div>
+      </div>
+    </main>
+
+  </div><!-- /shell -->
+
+  <!-- Detail drawer -->
+  <aside class="drawer" id="drawer">
+    <div class="drawer-header">
+      <div>
+        <div class="drawer-title" id="drawerTitle"></div>
+        <div class="drawer-meta-row" style="margin-top:8px;" id="drawerMeta"></div>
+      </div>
+      <button class="drawer-close" id="drawerClose" aria-label="Close">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    </div>
+    <div class="drawer-body" id="drawerBody"></div>
+  </aside>
+
+  <script>
+  // ── Data & state ──────────────────────────────────────────────────────────
+
+  let ALL = [];
+  let filtered = [];
+  let activeProject = null;
+
+  // activeFilters[dim] = Set of selected values
+  const activeFilters = {
+    stage:         new Set(),
+    audience:      new Set(),
+    department:    new Set(),
+    ai_tools:      new Set(),
+    delivery_type: new Set(),
+    next_steps:    new Set(),
+  };
+
+  let searchQuery = '';
+
+  // ── Stage config ──────────────────────────────────────────────────────────
+
+  const STAGE_MAP = {
+    'Initial Idea':      { dot: 'dot-idea',   label: 'Initial Idea' },
+    'AI Chat Prompt':    { dot: 'dot-early',  label: 'AI Prompt' },
+    'Rough Prototype':   { dot: 'dot-early',  label: 'Rough Proto' },
+    'Working Prototype': { dot: 'dot-proto',  label: 'Prototype' },
+    'Deployed':          { dot: 'dot-in-use', label: 'Deployed' },
+    'Fully Deployed':    { dot: 'dot-in-use', label: 'Fully Deployed' },
+    'Archived / Paused': { dot: 'dot-paused', label: 'Paused' },
+  };
+
+  // Dimension definitions for filter rendering
+  const DIMS = [
+    { id: 'stage',         label: 'Stage',         multi: true },
+    { id: 'audience',      label: 'Audience',       multi: true },
+    { id: 'department',    label: 'Department',     multi: true },
+    { id: 'ai_tools',      label: 'AI Tools',       multi: true },
+    { id: 'delivery_type', label: 'Delivery Type',  multi: true },
+    { id: 'next_steps',    label: 'Next Steps',     multi: true },
+  ];
+
+  // ── Boot ──────────────────────────────────────────────────────────────────
+
+  fetch('data.json')
+    .then(r => r.json())
+    .then(data => {
+      ALL = data.filter(p => p.published !== false);
+      filtered = [...ALL];
+      buildFilters();
+      render();
+    })
+    .catch(err => {
+      console.error('Failed to load data.json:', err);
+      document.getElementById('resultsCount').textContent = 'Could not load projects.';
+    });
+
+  // ── Filter building ───────────────────────────────────────────────────────
+
+  function buildFilters() {
+    DIMS.forEach(dim => buildDimFilter(dim));
+  }
+
+  function buildDimFilter(dim) {
+    const container = document.getElementById(`opts-${dim.id}`);
+    if (!container) return;
+
+    // Gather all unique values across ALL projects for this dimension
+    const valueCounts = {};
+    ALL.forEach(p => {
+      const vals = Array.isArray(p[dim.id]) ? p[dim.id] : [p[dim.id]];
+      vals.forEach(v => {
+        if (v) valueCounts[v] = (valueCounts[v] || 0) + 1;
+      });
+    });
+
+    const sorted = Object.entries(valueCounts).sort((a, b) => b[1] - a[1]);
+
+    container.innerHTML = sorted.map(([val, count]) => `
+      <div class="filter-opt" data-dim="${dim.id}" data-val="${val}">
+        <div class="opt-dot"></div>
+        <span>${val}</span>
+        <span class="opt-count">${count}</span>
+      </div>
+    `).join('');
+
+    container.querySelectorAll('.filter-opt').forEach(el => {
+      el.addEventListener('click', () => toggleFilter(dim.id, el.dataset.val, el));
+    });
+  }
+
+  function toggleFilter(dim, val, el) {
+    const set = activeFilters[dim];
+    if (set.has(val)) {
+      set.delete(val);
+      el.classList.remove('selected');
+    } else {
+      set.add(val);
+      el.classList.add('selected');
+    }
+    updateActiveTags();
+    applyFilters();
+  }
+
+  // ── Active tags ───────────────────────────────────────────────────────────
+
+  function updateActiveTags() {
+    const container = document.getElementById('activeTags');
+    const clearBtn = document.getElementById('clearAll');
+    const tags = [];
+
+    Object.entries(activeFilters).forEach(([dim, set]) => {
+      set.forEach(val => {
+        tags.push({ dim, val });
+      });
+    });
+
+    container.innerHTML = tags.map(t => `
+      <div class="active-tag" data-dim="${t.dim}" data-val="${t.val}">
+        <span>${t.val}</span>
+        <span class="x">×</span>
+      </div>
+    `).join('');
+
+    container.querySelectorAll('.active-tag').forEach(el => {
+      el.addEventListener('click', () => {
+        const { dim, val } = el.dataset;
+        activeFilters[dim].delete(val);
+        // Sync sidebar checkbox
+        const opt = document.querySelector(`.filter-opt[data-dim="${dim}"][data-val="${val}"]`);
+        if (opt) opt.classList.remove('selected');
+        updateActiveTags();
+        applyFilters();
+      });
+    });
+
+    clearBtn.classList.toggle('visible', tags.length > 0 || searchQuery.length > 0);
+  }
+
+  // ── Filter application ────────────────────────────────────────────────────
+
+  function applyFilters() {
+    const q = searchQuery.toLowerCase();
+
+    filtered = ALL.filter(p => {
+      // Search: name, one_liner, creator, success_story
+      if (q) {
+        const haystack = [p.project_name, p.one_liner, p.creator_name, p.success_story]
+          .join(' ').toLowerCase();
+        if (!haystack.includes(q)) return false;
+      }
+
+      // AND across dimensions, OR within
+      for (const [dim, set] of Object.entries(activeFilters)) {
+        if (set.size === 0) continue;
+        const vals = Array.isArray(p[dim]) ? p[dim] : [p[dim]];
+        const match = vals.some(v => set.has(v));
+        if (!match) return false;
+      }
+
+      return true;
+    });
+
+    render();
+    updateCounts();
+  }
+
+  function updateCounts() {
+    // Recalculate per-option counts based on current filtered set (minus that dim)
+    DIMS.forEach(dim => {
+      const opts = document.querySelectorAll(`.filter-opt[data-dim="${dim.id}"]`);
+      opts.forEach(opt => {
+        const val = opt.dataset.val;
+        // Count how many filtered projects have this value (ignoring this dim's filter)
+        const otherFiltered = ALL.filter(p => {
+          const q = searchQuery.toLowerCase();
+          if (q) {
+            const h = [p.project_name, p.one_liner, p.creator_name, p.success_story].join(' ').toLowerCase();
+            if (!h.includes(q)) return false;
+          }
+          for (const [d, set] of Object.entries(activeFilters)) {
+            if (d === dim.id) continue;
+            if (set.size === 0) continue;
+            const vals = Array.isArray(p[d]) ? p[d] : [p[d]];
+            if (!vals.some(v => set.has(v))) return false;
+          }
+          return true;
+        });
+
+        const count = otherFiltered.filter(p => {
+          const vals = Array.isArray(p[dim.id]) ? p[dim.id] : [p[dim.id]];
+          return vals.includes(val);
+        }).length;
+
+        const countEl = opt.querySelector('.opt-count');
+        if (countEl) countEl.textContent = count;
+        opt.style.opacity = count === 0 ? '0.4' : '1';
+      });
+    });
+  }
+
+  // ── Render grid ───────────────────────────────────────────────────────────
+
+  function render() {
+    const grid = document.getElementById('grid');
+    const emptyState = document.getElementById('emptyState');
+    const resultsCount = document.getElementById('resultsCount');
+
+    // Remove existing cards (leave empty state)
+    grid.querySelectorAll('.card').forEach(c => c.remove());
+
+    resultsCount.innerHTML = `<strong>${filtered.length}</strong> of ${ALL.length} projects`;
+
+    if (filtered.length === 0) {
+      emptyState.classList.add('visible');
+      return;
+    }
+    emptyState.classList.remove('visible');
+
+    filtered.forEach(project => {
+      const card = buildCard(project);
+      grid.appendChild(card);
+    });
+  }
+
+  function buildCard(p) {
+    const card = document.createElement('div');
+    card.className = 'card' + (activeProject?.id === p.id ? ' active' : '');
+    card.dataset.id = p.id;
+
+    const stage = STAGE_MAP[p.stage] || { dot: 'dot-idea', label: p.stage };
+    const tools = (p.ai_tools || []).slice(0, 3);
+    const deptChips = (p.department || []).slice(0, 2);
+
+    card.innerHTML = `
+      <div class="card-top">
+        <div class="card-name">${p.project_name}</div>
+        <div class="stage-dot ${stage.dot}" title="${p.stage}"></div>
+      </div>
+      <div class="card-oneliner">${p.one_liner}</div>
+      <div class="card-meta">
+        <span class="meta-who">${p.creator_name}</span>
+        <span style="color:var(--g3)">·</span>
+        <span class="meta-who">${(p.audience || []).join(', ')}</span>
+      </div>
+      <div class="card-chips">
+        ${tools.map(t => `<span class="chip chip-blue">${t}</span>`).join('')}
+        ${deptChips.map(d => `<span class="chip chip-indigo">${d}</span>`).join('')}
+        <span class="chip chip-grey">${stage.label}</span>
+      </div>
+    `;
+
+    card.addEventListener('click', () => openDrawer(p));
+    return card;
+  }
+
+  // ── Drawer ────────────────────────────────────────────────────────────────
+
+  function openDrawer(p) {
+    activeProject = p;
+    // Update card active state
+    document.querySelectorAll('.card').forEach(c => {
+      c.classList.toggle('active', c.dataset.id === p.id);
+    });
+
+    const stage = STAGE_MAP[p.stage] || { dot: 'dot-idea', label: p.stage };
+    const aiTools = p.ai_tools || [];
+    const dataCtx = p.data_context || [];
+    const delivery = p.delivery_type || [];
+    const nextSteps = p.next_steps || [];
+    const dept = p.department || [];
+    const audience = p.audience || [];
+
+    document.getElementById('drawerTitle').textContent = p.project_name;
+
+    document.getElementById('drawerMeta').innerHTML = `
+      <div class="stage-badge">
+        <div class="stage-dot ${stage.dot}"></div>
+        <span>${p.stage}</span>
+      </div>
+      <span style="color:var(--g3)">·</span>
+      <span style="font-size:.8rem;color:var(--g4);">${p.creator_name}</span>
+      ${dept.length ? `<span style="color:var(--g3)">·</span>
+      <span style="font-size:.8rem;color:var(--g4);">${dept.join(', ')}</span>` : ''}
+    `;
+
+    const launchBtn = p.share_link
+      ? `<a class="drawer-launch" href="${p.share_link}" target="_blank" rel="noopener">
+           Open project
+           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+         </a>`
+      : '';
+
+    // Build savings text if any
+    const savingsParts = [];
+    if (p.savings_dollars) savingsParts.push(p.savings_dollars);
+    if (p.savings_hours) savingsParts.push(p.savings_hours);
+    if (p.savings_replacing) savingsParts.push(`Replacing: ${p.savings_replacing}`);
+    if (p.savings_unknown) savingsParts.push('Not yet estimated');
+    const savingsHtml = savingsParts.length ? `
+      <div class="d-section">
+        <div class="d-label">Savings / Impact</div>
+        <div class="d-value">${savingsParts.join(' · ')}</div>
+      </div>` : '';
+
+    document.getElementById('drawerBody').innerHTML = `
+      <div class="d-section">
+        <div class="d-label">What it does</div>
+        <div class="d-value">${p.one_liner}</div>
+      </div>
+
+      ${p.success_story ? `
+      <div class="d-section">
+        <div class="d-label">What success looks like</div>
+        <div class="d-value story">${p.success_story}</div>
+      </div>` : ''}
+
+      ${savingsHtml}
+
+      <div class="d-grid">
+        <div class="d-section">
+          <div class="d-label">AI Tools</div>
+          <div class="d-chips">
+            ${aiTools.map(t => `<span class="chip chip-blue">${t}</span>`).join('') || '<span style="color:var(--g4);font-size:.85rem">—</span>'}
+          </div>
+        </div>
+        <div class="d-section">
+          <div class="d-label">Delivery</div>
+          <div class="d-chips">
+            ${delivery.map(d => `<span class="chip chip-grey">${d}</span>`).join('') || '<span style="color:var(--g4);font-size:.85rem">—</span>'}
+          </div>
+        </div>
+        <div class="d-section">
+          <div class="d-label">Data &amp; Context</div>
+          <div class="d-chips">
+            ${dataCtx.map(d => `<span class="chip chip-indigo">${d}</span>`).join('') || '<span style="color:var(--g4);font-size:.85rem">—</span>'}
+          </div>
+        </div>
+        <div class="d-section">
+          <div class="d-label">Audience</div>
+          <div class="d-value">${audience.join(', ') || '—'}</div>
+        </div>
+      </div>
+
+      ${nextSteps.length ? `
+      <div class="d-section">
+        <div class="d-label">Next steps / needs</div>
+        <div class="d-chips">
+          ${nextSteps.map(s => `<span class="chip chip-orange">${s}</span>`).join('')}
+        </div>
+        ${p.next_steps_notes ? `<div class="d-value" style="margin-top:8px;font-size:.85rem">${p.next_steps_notes}</div>` : ''}
+      </div>` : ''}
+
+      ${launchBtn ? `<div>${launchBtn}</div>` : ''}
+
+      <div class="d-submitted">Submitted ${p.submitted_at || ''}</div>
+    `;
+
+    document.getElementById('drawer').classList.add('open');
+    document.getElementById('overlay').classList.add('open');
+  }
+
+  function closeDrawer() {
+    activeProject = null;
+    document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
+    document.getElementById('drawer').classList.remove('open');
+    document.getElementById('overlay').classList.remove('open');
+  }
+
+  document.getElementById('drawerClose').addEventListener('click', closeDrawer);
+  document.getElementById('overlay').addEventListener('click', closeDrawer);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDrawer(); });
+
+  // ── Search ────────────────────────────────────────────────────────────────
+
+  document.getElementById('search').addEventListener('input', e => {
+    searchQuery = e.target.value.trim();
+    updateActiveTags();
+    applyFilters();
+  });
+
+  // ── Clear all ─────────────────────────────────────────────────────────────
+
+  function clearAllFilters() {
+    Object.keys(activeFilters).forEach(dim => activeFilters[dim].clear());
+    document.querySelectorAll('.filter-opt').forEach(el => el.classList.remove('selected'));
+    searchQuery = '';
+    document.getElementById('search').value = '';
+    updateActiveTags();
+    applyFilters();
+  }
+  document.getElementById('clearAll').addEventListener('click', clearAllFilters);
+
+  // ── Sidebar accordion ─────────────────────────────────────────────────────
+
+  document.querySelectorAll('.fg-header').forEach(hdr => {
+    hdr.addEventListener('click', () => {
+      hdr.closest('.filter-group').classList.toggle('open');
+    });
+  });
+
+  </script>
+</body>
+</html>

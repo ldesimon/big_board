@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Submit a Project — Big Board | KTAF</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --indigo:#001E62; --indigo-2:#002d8a;
+      --orange:#F9A21A; --orange-2:#e8920a;
+      --blue:#57C0E9;   --blue-2:#3aadd8;
+      --white:#FFFFFF;
+      --g1:#F8F9FB; --g2:#EDEEF2; --g3:#D0D3DC; --g4:#8A8FA2; --g5:#3D4259;
+      --r:8px;
+      --ff-head:'Barlow Condensed',sans-serif;
+      --ff-body:'DM Sans',sans-serif;
+      --ff-mono:'JetBrains Mono',monospace;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:var(--ff-body);background:var(--g1);color:var(--g5)}
+    a{text-decoration:none;color:inherit}
+
+    /* ── header ── */
+    header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--g2)}
+    .hdr{max-width:800px;margin:0 auto;padding:.85rem 2rem;display:flex;align-items:center;justify-content:space-between}
+    .brand{font-family:var(--ff-head);font-size:1.2rem;font-weight:700;color:var(--indigo);letter-spacing:.01em}
+    .brand span{color:var(--orange)}
+    .btn-back{display:inline-flex;align-items:center;gap:.35rem;font-size:.8rem;font-weight:600;color:var(--g4);transition:color .15s}
+    .btn-back:hover{color:var(--indigo)}
+
+    /* ── intro bar ── */
+    .intro-bar{background:var(--indigo);padding:3rem 2rem 2.5rem}
+    .intro-inner{max-width:800px;margin:0 auto}
+    .intro-label{font-family:var(--ff-mono);font-size:.7rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--orange);display:block;margin-bottom:.6rem}
+    .intro-heading{font-family:var(--ff-head);font-size:2.6rem;font-weight:800;color:var(--white);line-height:1.1;letter-spacing:.01em;margin-bottom:.9rem}
+    .intro-body{font-size:.95rem;color:rgba(255,255,255,.72);line-height:1.7;max-width:560px;margin-bottom:1.25rem}
+    .intro-pills{display:flex;flex-wrap:wrap;gap:.5rem}
+    .intro-pill{font-family:var(--ff-mono);font-size:.7rem;font-weight:500;background:rgba(255,255,255,.1);color:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.15);padding:.3rem .75rem;border-radius:20px}
+
+    /* ── form layout ── */
+    .form-wrap{max-width:800px;margin:0 auto;padding:2rem 2rem 4rem;display:flex;flex-direction:column;gap:1.5rem}
+    .form-section{background:var(--white);border:1.5px solid var(--g2);border-radius:12px;overflow:hidden}
+    .form-section-head{padding:1.5rem 1.75rem 1.25rem;border-bottom:1px solid var(--g2)}
+    .form-sec-label{font-family:var(--ff-mono);font-size:.68rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--orange);display:block;margin-bottom:.4rem}
+    .form-sec-title{font-family:var(--ff-head);font-size:1.5rem;font-weight:700;color:var(--indigo);letter-spacing:.01em;margin-bottom:.35rem}
+    .form-sec-body{font-size:.875rem;color:var(--g4);line-height:1.6}
+    .form-fields{padding:1.5rem 1.75rem;display:flex;flex-direction:column;gap:1.75rem}
+
+    /* ── field base ── */
+    .field{display:flex;flex-direction:column;gap:.45rem}
+    .field-label{font-size:1.3rem;font-weight:600;color:var(--g5);display:flex;align-items:baseline;gap:.5rem;flex-wrap:wrap}
+    .req{font-family:var(--ff-mono);font-size:.65rem;font-weight:500;color:var(--orange);letter-spacing:.04em;text-transform:uppercase}
+    .optional{font-family:var(--ff-mono);font-size:.65rem;font-weight:400;color:var(--g4);letter-spacing:.04em;text-transform:uppercase}
+    .field-hint{font-size:.8rem;color:var(--g4);line-height:1.55}
+
+    /* ── text inputs ── */
+    input[type="text"],input[type="url"],textarea{width:100%;padding:.65rem .9rem;border:1.5px solid rgba(249,162,26,.35);border-radius:var(--r);font-family:var(--ff-body);font-size:.875rem;color:var(--g5);background:rgba(249,162,26,.06);outline:none;resize:vertical;transition:border-color .15s,background .15s}
+    input[type="text"]:focus,input[type="url"]:focus,textarea:focus{border-color:var(--orange);background:var(--white)}
+    input[type="text"].err,input[type="url"].err,textarea.err{border-color:#e5334b}
+    input[type="text"]:disabled,input[type="url"]:disabled{opacity:.4;cursor:not-allowed;background:var(--g2)}
+    input::placeholder,textarea::placeholder{color:var(--g3)}
+    .field-error{font-size:.78rem;color:#e5334b;display:none}
+    .field-error.show{display:block}
+
+    /* ── option grids ── */
+    .option-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.5rem}
+    .option-grid.cols-1{grid-template-columns:1fr}
+    .option-grid.cols-3{grid-template-columns:repeat(3,1fr)}
+
+    .option-item input[type="radio"],.option-item input[type="checkbox"]{position:absolute;opacity:0;pointer-events:none}
+    .option-item label{display:flex;align-items:flex-start;gap:.65rem;padding:.7rem .85rem;border:1.5px solid rgba(249,162,26,.3);border-radius:var(--r);cursor:pointer;background:rgba(249,162,26,.06);transition:border-color .15s,background .15s}
+    .option-item label:hover{border-color:rgba(249,162,26,.55);background:rgba(249,162,26,.11)}
+
+    .opt-dot{width:16px;height:16px;flex-shrink:0;border:2px solid var(--g3);border-radius:50%;margin-top:1px;transition:border-color .15s,background .15s;position:relative}
+    .opt-dot::after{content:'';position:absolute;inset:3px;border-radius:50%;background:var(--white);transition:background .15s}
+
+    .opt-box{width:16px;height:16px;flex-shrink:0;border:2px solid var(--g3);border-radius:4px;margin-top:1px;transition:border-color .15s,background .15s;position:relative}
+    .opt-box::after{content:'';position:absolute;left:3px;top:0px;width:5px;height:9px;border:2px solid var(--white);border-top:none;border-left:none;transform:rotate(45deg);opacity:0;transition:opacity .1s}
+
+    input[type="radio"]:checked+label{border-color:var(--orange);background:rgba(249,162,26,.2)}
+    input[type="radio"]:checked+label .opt-dot{border-color:var(--orange);background:var(--orange)}
+    input[type="radio"]:checked+label .opt-dot::after{background:var(--white)}
+    input[type="checkbox"]:checked+label{border-color:var(--orange);background:rgba(249,162,26,.2)}
+    input[type="checkbox"]:checked+label .opt-box{border-color:var(--orange);background:var(--orange)}
+    input[type="checkbox"]:checked+label .opt-box::after{opacity:1}
+
+    .opt-text{display:flex;flex-direction:column;gap:.1rem}
+    .opt-main{font-size:.85rem;font-weight:600;color:var(--g5)}
+    .opt-sub{font-size:.78rem;color:var(--g4);line-height:1.45}
+
+    /* ── sub-groups ── */
+    .subgroup-set{display:flex;flex-direction:column;gap:1.25rem}
+    .subgroup{display:flex;flex-direction:column;gap:.55rem}
+    .subgroup-label{font-family:var(--ff-mono);font-size:.68rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--g4);padding:.3rem .6rem;background:var(--g2);border-radius:4px;display:inline-flex;align-self:flex-start}
+
+    /* ── other reveal ── */
+    .other-reveal{display:none;margin-top:.4rem}
+    .other-reveal.show{display:block}
+
+    /* ── savings grid ── */
+    .savings-grid{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+    .savings-grid .savings-full{grid-column:1 / -1}
+    .savings-field{display:flex;flex-direction:column;gap:.35rem}
+    .savings-field-label{font-size:.8rem;font-weight:600;color:var(--g5)}
+    .savings-unknown-row{margin-top:.25rem}
+
+    /* ── next steps needs block ── */
+    .needs-block{background:var(--g1);border:1.5px solid var(--g2);border-radius:var(--r);padding:1rem 1rem .75rem;margin-top:.5rem;display:flex;flex-direction:column;gap:.55rem}
+    .needs-block-label{font-size:.78rem;font-weight:600;color:var(--g5);margin-bottom:.1rem}
+    .needs-block .option-grid{gap:.4rem}
+    .next-steps-notes{margin-top:.75rem;display:flex;flex-direction:column;gap:.35rem}
+    .next-steps-notes label{font-size:.8rem;font-weight:600;color:var(--g5)}
+
+    /* ── submit block ── */
+    .submit-section{background:var(--white);border:1.5px solid var(--g2);border-radius:12px;padding:1.75rem;display:flex;flex-direction:column;gap:1.1rem}
+    .submit-note{font-size:.83rem;color:var(--g4);line-height:1.6}
+    .submit-note strong{color:var(--g5);font-weight:600}
+    .btn-submit{align-self:flex-start;display:inline-flex;align-items:center;gap:.5rem;padding:.8rem 1.75rem;background:var(--orange);color:var(--indigo);border:none;border-radius:var(--r);font-family:var(--ff-body);font-size:.9rem;font-weight:700;cursor:pointer;transition:background .15s,transform .1s}
+    .btn-submit:hover:not(:disabled){background:var(--orange-2)}
+    .btn-submit:active:not(:disabled){transform:scale(.98)}
+    .btn-submit:disabled{opacity:.55;cursor:not-allowed}
+    .spinner{display:none;width:16px;height:16px;border:2px solid rgba(0,30,98,.2);border-top-color:var(--indigo);border-radius:50%;animation:spin .6s linear infinite}
+    .btn-submit.loading .spinner{display:block}
+    .btn-submit.loading .btn-text{display:none}
+    @keyframes spin{to{transform:rotate(360deg)}}
+
+    /* ── success screen ── */
+    .success-screen{display:none;max-width:800px;margin:0 auto;padding:5rem 2rem;text-align:center;flex-direction:column;align-items:center;gap:1rem}
+    .success-screen.show{display:flex}
+    .success-icon{font-size:2.5rem}
+    .success-heading{font-family:var(--ff-head);font-size:2rem;font-weight:700;color:var(--indigo)}
+    .success-body{font-size:.95rem;color:var(--g4);line-height:1.7;max-width:460px}
+    .btn-board{display:inline-flex;align-items:center;gap:.45rem;padding:.75rem 1.75rem;background:var(--orange);color:var(--indigo);border-radius:var(--r);font-size:.9rem;font-weight:700;margin-top:.5rem;transition:background .15s}
+    .btn-board:hover{background:var(--orange-2)}
+
+    /* ── footer ── */
+    footer{background:var(--indigo);border-top:1px solid rgba(255,255,255,.07);padding:1.25rem 2rem}
+    .footer-inner{max-width:800px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.5rem}
+    .footer-txt{font-family:var(--ff-mono);font-size:.62rem;letter-spacing:.08em;color:rgba(255,255,255,.22)}
+
+    @media(max-width:600px){
+      .hdr,.intro-bar,.form-wrap,.success-screen,footer{padding-left:1.1rem;padding-right:1.1rem}
+      .form-fields,.form-section-head{padding:1.25rem}
+      .option-grid,.option-grid.cols-3{grid-template-columns:1fr}
+      .savings-grid{grid-template-columns:1fr}
+      .savings-grid .savings-full{grid-column:1}
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="hdr">
+    <div class="brand">Big<span>Board</span> | KTAF</div>
+    <a class="btn-back" href="bigboard.html">
+      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+      Back to Board
+    </a>
+  </div>
+</header>
+
+<div class="intro-bar">
+  <div class="intro-inner">
+    <span class="intro-label">Submit your project or idea</span>
+    <h1 class="intro-heading">Log what you're building.</h1>
+    <p class="intro-body">If you've built something with AI — or even just started thinking through an idea — share it here! This is simply a shared log of what's in play as we are learning new tools and approaches, so we can learn from each other and figure out what to prioritize.</p>
+    <div class="intro-pills">
+      <span class="intro-pill">~ 3 minutes</span>
+      <span class="intro-pill">Reviewed by DTI before publishing</span>
+    </div>
+  </div>
+</div>
+
+<div class="form-wrap" id="formWrap">
+<form id="submissionForm" novalidate>
+
+  <!-- ═══ SECTION 1 — The Project ═══ -->
+  <div class="form-section">
+    <div class="form-section-head">
+      <span class="form-sec-label">Section 1 of 4</span>
+      <div class="form-sec-title">The Project</div>
+      <p class="form-sec-body">Name it, pitch it, and tell us where it stands.</p>
+    </div>
+    <div class="form-fields">
+
+      <!-- Q1 Project Name -->
+      <div class="field">
+        <label class="field-label" for="projectName">What's it called? <span class="req">required</span></label>
+        <p class="field-hint">The name you use when you talk about it.</p>
+        <input type="text" id="projectName" name="projectName" placeholder="e.g. NJSLA Math Test Prep Generator" />
+        <span class="field-error" id="err-projectName">Please give your project a name.</span>
+      </div>
+
+      <!-- Q2 One-Liner Pitch -->
+      <div class="field">
+        <label class="field-label" for="oneLiner">What does it do, and who does it help? <span class="req">required</span></label>
+        <p class="field-hint">Quick pitch — 1 to 2 sentences. Don't overthink it; we can clean this up.</p>
+        <textarea id="oneLiner" name="oneLiner" rows="3" placeholder="e.g. Helps ADs generate NJSLA math practice sets from an item bank — what used to take 45 minutes now takes seconds."></textarea>
+        <span class="field-error" id="err-oneLiner">Please add a quick description.</span>
+      </div>
+
+      <!-- Q3 Stage -->
+      <div class="field">
+        <div class="field-label">What stage is it in? <span class="req">required</span></div>
+        <p class="field-hint">Pick the closest fit — even rough ideas count.</p>
+        <div class="option-grid cols-1" id="stageGroup">
+          <div class="option-item"><input type="radio" name="stage" id="stage1" value="Initial Idea" /><label for="stage1"><span class="opt-dot"></span><span class="opt-text"><span class="opt-main">Initial Idea</span><span class="opt-sub">Nothing built yet — still in your head or in notes.</span></span></label></div>
+          <div class="option-item"><input type="radio" name="stage" id="stage2" value="AI Chat Prompt" /><label for="stage2"><span class="opt-dot"></span><span class="opt-text"><span class="opt-main">AI Chat Prompt</span><span class="opt-sub">Doing this manually in Claude, Gemini, or ChatGPT.</span></span></label></div>
+          <div class="option-item"><input type="radio" name="stage" id="stage3" value="Rough Prototype" /><label for="stage3"><span class="opt-dot"></span><span class="opt-text"><span class="opt-main">Rough Prototype</span><span class="opt-sub">Works for me, but needs polish before sharing.</span></span></label></div>
+          <div class="option-item"><input type="radio" name="stage" id="stage4" value="Working Prototype" /><label for="stage4"><span class="opt-dot"></span><span class="opt-text"><span class="opt-main">Working Prototype</span><span class="opt-sub">Ready for others to test and give feedback.</span></span></label></div>
+          <div class="option-item"><input type="radio" name="stage" id="stage5" value="Deployed" /><label for="stage5"><span class="opt-dot"></span><span class="opt-text"><span class="opt-main">Deployed</span><span class="opt-sub">Up and running, actively used — still tinkering.</span></span></label></div>
+          <div class="option-item"><input type="radio" name="stage" id="stage6" value="Fully Deployed" /><label for="stage6"><span class="opt-dot"></span><span class="opt-text"><span class="opt-main">Fully Deployed</span><span class="opt-sub">Officially launched with a maintenance plan in place.</span></span></label></div>
+          <div class="option-item"><input type="radio" name="stage" id="stage7" value="Archived / Paused" /><label for="stage7"><span class="opt-dot"></span><span class="opt-text"><span class="opt-main">Archived / Paused</span><span class="opt-sub">On ice for now — logged for future reference.</span></span></label></div>
+        </div>
+        <span class="field-error" id="err-stage">Please pick a stage.</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══ SECTION 2 — Who & Impact ═══ -->
+  <div class="form-section">
+    <div class="form-section-head">
+      <span class="form-sec-label">Section 2 of 4</span>
+      <div class="form-sec-title">Who It's For &amp; What It Changes</div>
+      <p class="form-sec-body">Tell us who benefits and what success looks like.</p>
+    </div>
+    <div class="form-fields">
+
+      <!-- Q4 Audience + Department -->
+      <div class="field">
+        <div class="field-label">Who is the primary user, and what team is it for? <span class="req">required</span></div>
+        <p class="field-hint">Pick everything that fits across both groups.</p>
+        <div class="subgroup-set">
+
+          <div class="subgroup">
+            <span class="subgroup-label">Who uses it?</span>
+            <div class="option-grid">
+              <div class="option-item"><input type="checkbox" name="audience" id="aud1" value="Just me" /><label for="aud1"><span class="opt-box"></span><span class="opt-main">Just me</span></label></div>
+              <div class="option-item"><input type="checkbox" name="audience" id="aud2" value="My team" /><label for="aud2"><span class="opt-box"></span><span class="opt-main">My team</span></label></div>
+              <div class="option-item"><input type="checkbox" name="audience" id="aud3" value="My school or office" /><label for="aud3"><span class="opt-box"></span><span class="opt-main">My school or office</span></label></div>
+              <div class="option-item"><input type="checkbox" name="audience" id="aud4" value="My region" /><label for="aud4"><span class="opt-box"></span><span class="opt-main">My region</span></label></div>
+              <div class="option-item"><input type="checkbox" name="audience" id="aud5" value="Whole org" /><label for="aud5"><span class="opt-box"></span><span class="opt-main">Whole org</span></label></div>
+              <div class="option-item"><input type="checkbox" name="audience" id="aud6" value="Students" /><label for="aud6"><span class="opt-box"></span><span class="opt-main">Students</span></label></div>
+              <div class="option-item"><input type="checkbox" name="audience" id="aud7" value="Staff" /><label for="aud7"><span class="opt-box"></span><span class="opt-main">Staff</span></label></div>
+              <div class="option-item"><input type="checkbox" name="audience" id="aud8" value="Families" /><label for="aud8"><span class="opt-box"></span><span class="opt-main">Families</span></label></div>
+              <div class="option-item"><input type="checkbox" name="audience" id="aud9" value="External" /><label for="aud9"><span class="opt-box"></span><span class="opt-main">External</span></label></div>
+              <div class="option-item"><input type="checkbox" name="audience" id="aud10" value="Not sure yet" /><label for="aud10"><span class="opt-box"></span><span class="opt-main">Not sure yet</span></label></div>
+            </div>
+          </div>
+
+          <div class="subgroup">
+            <span class="subgroup-label">Which team or department?</span>
+            <div class="option-grid">
+              <div class="option-item"><input type="checkbox" name="department" id="dept1" value="Academics" /><label for="dept1"><span class="opt-box"></span><span class="opt-main">Academics</span></label></div>
+              <div class="option-item"><input type="checkbox" name="department" id="dept2" value="Operations" /><label for="dept2"><span class="opt-box"></span><span class="opt-main">Operations</span></label></div>
+              <div class="option-item"><input type="checkbox" name="department" id="dept3" value="Finance" /><label for="dept3"><span class="opt-box"></span><span class="opt-main">Finance</span></label></div>
+              <div class="option-item"><input type="checkbox" name="department" id="dept4" value="HR &amp; Ops" /><label for="dept4"><span class="opt-box"></span><span class="opt-main">HR &amp; Ops</span></label></div>
+              <div class="option-item"><input type="checkbox" name="department" id="dept5" value="Talent" /><label for="dept5"><span class="opt-box"></span><span class="opt-main">Talent</span></label></div>
+              <div class="option-item"><input type="checkbox" name="department" id="dept6" value="DTI" /><label for="dept6"><span class="opt-box"></span><span class="opt-main">DTI</span></label></div>
+              <div class="option-item"><input type="checkbox" name="department" id="dept7" value="KIPP Forward" /><label for="dept7"><span class="opt-box"></span><span class="opt-main">KIPP Forward</span></label></div>
+              <div class="option-item"><input type="checkbox" name="department" id="dept8" value="TC" /><label for="dept8"><span class="opt-box"></span><span class="opt-main">TC</span></label></div>
+              <div class="option-item"><input type="checkbox" name="department" id="dept9" value="Not sure yet" /><label for="dept9"><span class="opt-box"></span><span class="opt-main">Not sure yet</span></label></div>
+              <div class="option-item"><input type="checkbox" name="department" id="dept10" value="Other" /><label for="dept10"><span class="opt-box"></span><span class="opt-main">Other</span></label></div>
+            </div>
+            <div class="other-reveal" id="deptOtherReveal">
+              <input type="text" id="departmentOther" placeholder="Which team or department?" />
+            </div>
+          </div>
+
+        </div>
+        <span class="field-error" id="err-audience">Please select at least one option from each group.</span>
+      </div>
+
+      <!-- Q5 Success Story -->
+      <div class="field">
+        <label class="field-label" for="successStory">If this works the way you're imagining, what changes? <span class="req">required</span></label>
+        <p class="field-hint">Share a quick story or a specific detail. Even rough is fine — we'll refine later.</p>
+        <textarea id="successStory" name="successStory" rows="3" placeholder="e.g. Saves ADs ~5 hours each test prep season. If shared with teachers, multiplies across the whole grade team."></textarea>
+        <span class="field-error" id="err-successStory">Please share what success looks like.</span>
+      </div>
+
+      <!-- Q6 Savings -->
+      <div class="field">
+        <div class="field-label">Is this saving time, saving money, or replacing a tool? <span class="optional">optional</span></div>
+        <p class="field-hint">Ballparks are fine. Skip anything you don't know yet.</p>
+        <div class="savings-grid">
+          <div class="savings-field">
+            <label class="savings-field-label" for="savingsDollars">Estimated $ saved</label>
+            <input type="text" id="savingsDollars" placeholder="e.g. Replaces $10/user/month AppSheet (~$12k/year)" />
+          </div>
+          <div class="savings-field">
+            <label class="savings-field-label" for="savingsHours">Estimated hours saved</label>
+            <input type="text" id="savingsHours" placeholder="e.g. ~5 hrs per AD per test prep season" />
+          </div>
+          <div class="savings-field savings-full">
+            <label class="savings-field-label" for="savingsReplacing">Replacing something?</label>
+            <input type="text" id="savingsReplacing" placeholder="e.g. AppSheet, a manual Google Sheet process, a vendor tool" />
+          </div>
+        </div>
+        <div class="savings-unknown-row">
+          <div class="option-item" style="max-width:320px">
+            <input type="checkbox" id="savingsUnknown" />
+            <label for="savingsUnknown"><span class="opt-box"></span><span class="opt-main">I don't know yet</span></label>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══ SECTION 3 — How You Built It ═══ -->
+  <div class="form-section">
+    <div class="form-section-head">
+      <span class="form-sec-label">Section 3 of 4</span>
+      <div class="form-sec-title">How You Built It</div>
+      <p class="form-sec-body">Share some basic building blocks — we'll tag it properly during review.</p>
+    </div>
+    <div class="form-fields">
+
+      <!-- Q7 Built With (3 sub-groups) -->
+      <div class="field">
+        <div class="field-label">Share some basic building blocks. <span class="req">required</span></div>
+        <p class="field-hint">Select everything that applies across all three groups.</p>
+        <div class="subgroup-set">
+
+          <div class="subgroup">
+            <span class="subgroup-label">AI tools used</span>
+            <div class="option-grid">
+              <div class="option-item"><input type="checkbox" name="ai_tools" id="ai1" value="Claude" /><label for="ai1"><span class="opt-box"></span><span class="opt-main">Claude</span></label></div>
+              <div class="option-item"><input type="checkbox" name="ai_tools" id="ai2" value="Gemini" /><label for="ai2"><span class="opt-box"></span><span class="opt-main">Gemini</span></label></div>
+              <div class="option-item"><input type="checkbox" name="ai_tools" id="ai3" value="ChatGPT" /><label for="ai3"><span class="opt-box"></span><span class="opt-main">ChatGPT</span></label></div>
+              <div class="option-item"><input type="checkbox" name="ai_tools" id="ai4" value="Other" /><label for="ai4"><span class="opt-box"></span><span class="opt-main">Other</span></label></div>
+            </div>
+            <div class="other-reveal" id="aiToolsOtherReveal">
+              <input type="text" id="aiToolsOther" placeholder="Which AI tool(s)?" />
+            </div>
+          </div>
+
+          <div class="subgroup">
+            <span class="subgroup-label">What data or context did you need?</span>
+            <div class="option-grid">
+              <div class="option-item"><input type="checkbox" name="data_context" id="dc1" value="Project files (emails, memos, docs)" /><label for="dc1"><span class="opt-box"></span><span class="opt-main">Project files</span><span class="opt-sub">emails, memos, docs</span></label></div>
+              <div class="option-item"><input type="checkbox" name="data_context" id="dc2" value="Data files (static, downloaded manually)" /><label for="dc2"><span class="opt-box"></span><span class="opt-main">Data files</span><span class="opt-sub">static, downloaded manually</span></label></div>
+              <div class="option-item"><input type="checkbox" name="data_context" id="dc3" value="Connected data (live feed or API)" /><label for="dc3"><span class="opt-box"></span><span class="opt-main">Connected data</span><span class="opt-sub">a live feed, API, etc.</span></label></div>
+              <div class="option-item"><input type="checkbox" name="data_context" id="dc4" value="Claude plugins or skills" /><label for="dc4"><span class="opt-box"></span><span class="opt-main">Claude plugins or skills</span></label></div>
+              <div class="option-item"><input type="checkbox" name="data_context" id="dc5" value="None — no data needed" /><label for="dc5"><span class="opt-box"></span><span class="opt-main">None — no data needed</span></label></div>
+              <div class="option-item"><input type="checkbox" name="data_context" id="dc6" value="Other" /><label for="dc6"><span class="opt-box"></span><span class="opt-main">Other</span></label></div>
+            </div>
+            <div class="other-reveal" id="dataContextOtherReveal">
+              <input type="text" id="dataContextOther" placeholder="What kind of data or context?" />
+            </div>
+          </div>
+
+          <div class="subgroup">
+            <span class="subgroup-label">How is it delivered?</span>
+            <div class="option-grid cols-1">
+              <div class="option-item"><input type="checkbox" name="delivery_type" id="del1" value="A prompt or conversation — nothing to hand off" /><label for="del1"><span class="opt-box"></span><span class="opt-main">A prompt or conversation — nothing to hand off</span></label></div>
+              <div class="option-item"><input type="checkbox" name="delivery_type" id="del2" value="A script or workflow" /><label for="del2"><span class="opt-box"></span><span class="opt-main">A script or workflow</span><span class="opt-sub">e.g. clean up my inbox, find calendar slots</span></label></div>
+              <div class="option-item"><input type="checkbox" name="delivery_type" id="del3" value="A document" /><label for="del3"><span class="opt-box"></span><span class="opt-main">A document</span><span class="opt-sub">draft email, memo, project plan</span></label></div>
+              <div class="option-item"><input type="checkbox" name="delivery_type" id="del4" value="A simple webpage or app" /><label for="del4"><span class="opt-box"></span><span class="opt-main">A simple webpage or app</span><span class="opt-sub">static info, shareable</span></label></div>
+              <div class="option-item"><input type="checkbox" name="delivery_type" id="del5" value="An interactive app" /><label for="del5"><span class="opt-box"></span><span class="opt-main">An interactive app</span><span class="opt-sub">users enter or save data</span></label></div>
+              <div class="option-item"><input type="checkbox" name="delivery_type" id="del6" value="Code (script, notebook, integration)" /><label for="del6"><span class="opt-box"></span><span class="opt-main">Code</span><span class="opt-sub">script, notebook, integration</span></label></div>
+              <div class="option-item"><input type="checkbox" name="delivery_type" id="del7" value="A Claude artifact" /><label for="del7"><span class="opt-box"></span><span class="opt-main">A Claude artifact</span><span class="opt-sub">specific file type Claude generates</span></label></div>
+              <div class="option-item"><input type="checkbox" name="delivery_type" id="del8" value="Other" /><label for="del8"><span class="opt-box"></span><span class="opt-main">Other</span></label></div>
+            </div>
+            <div class="other-reveal" id="deliveryTypeOtherReveal">
+              <input type="text" id="deliveryTypeOther" placeholder="How is it delivered?" />
+            </div>
+          </div>
+
+        </div>
+        <span class="field-error" id="err-built">Please select at least one option from each group.</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══ SECTION 4 — What's Next + Who Made It ═══ -->
+  <div class="form-section">
+    <div class="form-section-head">
+      <span class="form-sec-label">Section 4 of 4</span>
+      <div class="form-sec-title">What's Next + Who Made It</div>
+      <p class="form-sec-body">Tell us what you need — and drop your name so we know who to credit.</p>
+    </div>
+    <div class="form-fields">
+
+      <!-- Q8 Next Steps / Needs -->
+      <div class="field">
+        <div class="field-label">Are there roadblocks or next steps on your radar? <span class="optional">optional</span></div>
+        <p class="field-hint">Pick the closest fit — or just tell us.</p>
+        <div class="option-grid">
+          <div class="option-item"><input type="checkbox" name="next_steps" id="ns1" value="Good to go — no changes needed" /><label for="ns1"><span class="opt-box"></span><span class="opt-main">Good to go — no changes needed</span></label></div>
+          <div class="option-item"><input type="checkbox" name="next_steps" id="ns2" value="Not sure yet" /><label for="ns2"><span class="opt-box"></span><span class="opt-main">Not sure yet</span></label></div>
+        </div>
+        <div class="needs-block">
+          <div class="needs-block-label">Need to find a solution for: (pick all that apply)</div>
+          <div class="option-grid">
+            <div class="option-item"><input type="checkbox" name="next_steps" id="ns3" value="Deploying it — need to host or share more effectively" /><label for="ns3"><span class="opt-box"></span><span class="opt-main">Deploying it</span><span class="opt-sub">need to host or share it more effectively</span></label></div>
+            <div class="option-item"><input type="checkbox" name="next_steps" id="ns4" value="Accessing data — need to pull data automatically or via API" /><label for="ns4"><span class="opt-box"></span><span class="opt-main">Accessing data</span><span class="opt-sub">need to pull data automatically or via API</span></label></div>
+            <div class="option-item"><input type="checkbox" name="next_steps" id="ns5" value="Permissions and logins — need to control access" /><label for="ns5"><span class="opt-box"></span><span class="opt-main">Permissions and logins</span><span class="opt-sub">need to control who can see or do what</span></label></div>
+            <div class="option-item"><input type="checkbox" name="next_steps" id="ns6" value="Design help — look and feel needs work" /><label for="ns6"><span class="opt-box"></span><span class="opt-main">Design help</span><span class="opt-sub">look and feel needs work</span></label></div>
+          </div>
+        </div>
+        <div class="next-steps-notes">
+          <label for="nextStepsNotes">Anything else on your mind?</label>
+          <textarea id="nextStepsNotes" rows="2" placeholder="Open blockers, ideas, questions for DTI..."></textarea>
+        </div>
+      </div>
+
+      <!-- Q9 Creator -->
+      <div class="field">
+        <div class="field-label">Drop your name so we know who to credit. <span class="req">required</span></div>
+        <p class="field-hint">First and last name, or whatever you go by at KTAF.</p>
+        <input type="text" id="creatorName" name="creatorName" placeholder="e.g. Ryan Hill" />
+        <span class="field-error" id="err-creatorName">Please include your name.</span>
+
+        <div style="margin-top:1rem;display:flex;flex-direction:column;gap:.4rem">
+          <label class="savings-field-label" for="shareLink">Got a link to share? <span class="optional">optional</span></label>
+          <p class="field-hint">A prototype URL, GitHub repo, Google Doc — wherever the work lives right now. Skip if nothing to share yet.</p>
+          <input type="url" id="shareLink" name="shareLink" placeholder="https://..." />
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══ SUBMIT ═══ -->
+  <div class="submit-section">
+    <p class="submit-note">After you submit, the <strong>DTI team</strong> reads your entry, may tighten up the language or tags, and publishes it to the board. Most submissions are reviewed within a few days. If we have questions, we'll reach out directly.</p>
+    <button type="submit" class="btn-submit" id="submitBtn">
+      <span class="btn-text">Submit to the Board</span>
+      <span class="spinner"></span>
+    </button>
+  </div>
+
+</form>
+</div>
+
+<!-- ═══ SUCCESS SCREEN ═══ -->
+<div class="success-screen" id="successScreen">
+  <div class="success-icon">🎉</div>
+  <h2 class="success-heading">It's in the queue.</h2>
+  <p class="success-body">Thanks for logging your work. DTI will review your submission and reach out if they have questions. Once it's published, you'll be able to find it on the board.</p>
+  <a class="btn-board" href="bigboard.html">Go explore the board →</a>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <span class="footer-txt">KTAF BIG BOARD · DTI · INTERNAL USE</span>
+    <span class="footer-txt"></span>
+  </div>
+</footer>
+
+<script>
+  const SUBMIT_URL = 'https://script.google.com/macros/s/AKfycbwcHhprUoZxQK6_8WHal3qU6GUPsqNIXF4NAdIgP6zLmVbf2-sMb6oqMkuTf2NobREoEA/exec';
+
+  // ── Other reveal handlers ──
+  function wireOther(checkboxId, revealId) {
+    const cb = document.getElementById(checkboxId);
+    const reveal = document.getElementById(revealId);
+    if (!cb || !reveal) return;
+    cb.addEventListener('change', () => {
+      reveal.classList.toggle('show', cb.checked);
+    });
+  }
+  wireOther('dept10',  'deptOtherReveal');
+  wireOther('ai4',     'aiToolsOtherReveal');
+  wireOther('dc6',     'dataContextOtherReveal');
+  wireOther('del8',    'deliveryTypeOtherReveal');
+
+  // ── Savings unknown toggle ──
+  document.getElementById('savingsUnknown').addEventListener('change', function () {
+    const fields = ['savingsDollars', 'savingsHours', 'savingsReplacing'];
+    fields.forEach(id => {
+      const el = document.getElementById(id);
+      el.disabled = this.checked;
+      if (this.checked) el.value = '';
+    });
+  });
+
+  // ── Data collection ──
+  function v(id) { const el = document.getElementById(id); return el ? el.value.trim() : ''; }
+  function checked(name) {
+    return [...document.querySelectorAll(`input[name="${name}"]:checked`)].map(i => i.value).join(', ');
+  }
+
+  function collectData() {
+    return {
+      project_name:          v('projectName'),
+      one_liner:             v('oneLiner'),
+      stage:                 checked('stage'),
+      audience:              checked('audience'),
+      department:            checked('department'),
+      department_other:      v('departmentOther'),
+      success_story:         v('successStory'),
+      savings_dollars:       v('savingsDollars'),
+      savings_hours:         v('savingsHours'),
+      savings_replacing:     v('savingsReplacing'),
+      savings_unknown:       document.getElementById('savingsUnknown').checked ? 'TRUE' : '',
+      ai_tools:              checked('ai_tools'),
+      ai_tools_other:        v('aiToolsOther'),
+      data_context:          checked('data_context'),
+      data_context_other:    v('dataContextOther'),
+      delivery_type:         checked('delivery_type'),
+      delivery_type_other:   v('deliveryTypeOther'),
+      next_steps:            checked('next_steps'),
+      next_steps_notes:      v('nextStepsNotes'),
+      creator_name:          v('creatorName'),
+      share_link:            v('shareLink'),
+    };
+  }
+
+  // ── Validation ──
+  function clearErrors() {
+    document.querySelectorAll('.field-error.show').forEach(el => el.classList.remove('show'));
+    document.querySelectorAll('.err').forEach(el => el.classList.remove('err'));
+  }
+  function showError(id, inputId) {
+    const err = document.getElementById(id);
+    if (err) err.classList.add('show');
+    if (inputId) {
+      const inp = document.getElementById(inputId);
+      if (inp) inp.classList.add('err');
+    }
+  }
+
+  function validate(data) {
+    let ok = true;
+    if (!data.project_name)  { showError('err-projectName', 'projectName'); ok = false; }
+    if (!data.one_liner)     { showError('err-oneLiner', 'oneLiner'); ok = false; }
+    if (!data.stage)         { showError('err-stage'); ok = false; }
+    if (!data.audience && !data.department) { showError('err-audience'); ok = false; }
+    if (!data.success_story) { showError('err-successStory', 'successStory'); ok = false; }
+    if (!data.creator_name)  { showError('err-creatorName', 'creatorName'); ok = false; }
+    return ok;
+  }
+
+  // ── Submit ──
+  document.getElementById('submissionForm').addEventListener('submit', async function (e) {
+    e.preventDefault();
+    clearErrors();
+    const data = collectData();
+    if (!validate(data)) {
+      document.querySelector('.field-error.show')?.closest('.field')?.querySelector('input,textarea')?.focus();
+      return;
+    }
+
+    const btn = document.getElementById('submitBtn');
+    btn.disabled = true;
+    btn.classList.add('loading');
+
+    try {
+      const body = new URLSearchParams(data).toString();
+      await fetch(SUBMIT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body,
+      });
+      document.getElementById('formWrap').style.display = 'none';
+      document.getElementById('successScreen').classList.add('show');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } catch (err) {
+      btn.disabled = false;
+      btn.classList.remove('loading');
+      alert('Something went wrong. Please try again or contact DTI.');
+    }
+  });
+</script>
+</body>
+</html>

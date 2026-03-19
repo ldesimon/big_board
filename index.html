@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KTAF AI Big Board</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ─── Tokens ──────────────────────────────────────────────────────────────── */
+    :root {
+      --indigo:  #001E62;
+      --white:   #FFFFFF;
+      --orange:  #F9A21A;
+      --blue:    #57C0E9;
+
+      --g1: #F4F5F7;   
+      --g2: #E2E4E9;   
+      --g3: #9BA3AF;   
+      --g4: #6B7280;   
+      --g5: #374151;   
+
+      --ff-head: 'Barlow Condensed', sans-serif;
+      --ff-body: 'DM Sans', sans-serif;
+      --ff-mono: 'JetBrains Mono', monospace;
+
+      --r:    8px;
+      --r-lg: 14px;
+      --mw:   1100px;
+    }
+
+    html { font-size: 16px; scroll-behavior: smooth; }
+    body {
+      background: var(--white);
+      color: var(--g5);
+      font-family: var(--ff-body);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* ─── Scroll Reveal ──────────────────────────────────────────────────────── */
+    .rev {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    .rev.on { opacity: 1; transform: translateY(0); }
+    .d1 { transition-delay: 0.08s; }
+    .d2 { transition-delay: 0.16s; }
+    .d3 { transition-delay: 0.24s; }
+    .d4 { transition-delay: 0.32s; }
+    .d5 { transition-delay: 0.40s; }
+
+    /* ─── Shared Layout ──────────────────────────────────────────────────────── */
+    .inner { max-width: var(--mw); margin: 0 auto; }
+    section { padding: 5.5rem 2rem; }
+
+    .sec-label {
+      font-family: var(--ff-mono);
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 0.85rem;
+      display: block;
+    }
+    .sec-heading {
+      font-family: var(--ff-head);
+      font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+      font-weight: 800;
+      color: var(--indigo);
+      line-height: 1.08;
+      letter-spacing: -0.01em;
+      margin-bottom: 1.35rem;
+    }
+    .sec-body {
+      font-size: 1rem;
+      color: var(--g4);
+      line-height: 1.78;
+      max-width: 660px;
+    }
+    .sec-body p + p { margin-top: 1rem; }
+
+    /* ─── Buttons ────────────────────────────────────────────────────────────── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-family: var(--ff-body);
+      font-weight: 700;
+      border-radius: var(--r);
+      transition: background 0.15s, transform 0.15s, box-shadow 0.15s;
+      cursor: pointer;
+    }
+    .btn-orange {
+      background: var(--orange);
+      color: var(--white);
+      box-shadow: 0 3px 14px rgba(249,162,26,0.28);
+    }
+    .btn-orange:hover {
+      background: #E8920A;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(249,162,26,0.38);
+    }
+    .btn-sm  { padding: 0.42rem 1rem;   font-size: 0.8rem;  }
+    .btn-lg  { padding: 1rem 2.4rem;    font-size: 1.05rem;
+               box-shadow: 0 4px 22px rgba(249,162,26,0.32); }
+    .btn-lg:hover { box-shadow: 0 8px 28px rgba(249,162,26,0.42); }
+
+    /* ─── Header ─────────────────────────────────────────────────────────────── */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.93);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--g2);
+    }
+    .hdr {
+      max-width: var(--mw);
+      margin: 0 auto;
+      padding: 0 2rem;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .brand { display: flex; align-items: center; gap: 0.7rem; }
+    .brand-mark {
+      width: 28px; height: 28px;
+      border-radius: 6px;
+      background: var(--indigo);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--ff-head);
+      font-size: 11px; font-weight: 700;
+      color: var(--white);
+      letter-spacing: 0.05em;
+      flex-shrink: 0;
+    }
+    .brand-name {
+      font-family: var(--ff-head);
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--indigo);
+    }
+
+    /* ─── Hero ───────────────────────────────────────────────────────────────── */
+    .hero {
+      min-height: calc(100vh - 56px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 5rem 2rem 4.5rem;
+      background: var(--white);
+      border-bottom: 1px solid var(--g2);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--g2) 1px, transparent 1px),
+        linear-gradient(90deg, var(--g2) 1px, transparent 1px);
+      background-size: 56px 56px;
+      opacity: 0.45;
+      pointer-events: none;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: -120px; right: -120px;
+      width: 480px; height: 480px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(249,162,26,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-inner { max-width: var(--mw); margin: 0 auto; position: relative; }
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--ff-mono);
+      font-size: 0.62rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--blue);
+      background: rgba(87,192,233,0.08);
+      border: 1px solid rgba(87,192,233,0.22);
+      border-radius: 20px;
+      padding: 0.28rem 0.9rem;
+      margin-bottom: 2rem;
+    }
+    .pulse-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--blue);
+      animation: pulse 2.2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1);   }
+      50%       { opacity: 0.4; transform: scale(0.8); }
+    }
+    .hero-title {
+      font-family: var(--ff-head);
+      font-size: clamp(3.8rem, 9vw, 7rem);
+      font-weight: 800;
+      color: var(--indigo);
+      line-height: 0.95;
+      letter-spacing: -0.025em;
+      margin-bottom: 0.6rem;
+    }
+    .hero-title-accent { color: var(--orange); }
+    .hero-sub {
+      font-family: var(--ff-head);
+      font-size: clamp(1.3rem, 2.5vw, 1.75rem);
+      font-weight: 600;
+      color: var(--g3);
+      line-height: 1.25;
+      margin-bottom: 2rem;
+    }
+    .hero-body {
+      font-size: 1.05rem;
+      color: var(--g4);
+      line-height: 1.8;
+      max-width: 600px;
+      margin-bottom: 2.5rem;
+    }
+    .hero-cta-row { display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap; }
+    .scroll-hint {
+      font-family: var(--ff-mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--g3);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .scroll-arrow { animation: bounce 1.9s ease-in-out infinite; }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(5px); }
+    }
+
+    /* ─── Section: The Moment ────────────────────────────────────────────────── */
+    .sec-moment { background: var(--white); border-bottom: 1px solid var(--g2); }
+    .moment-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      margin-top: 2.75rem;
+    }
+    .moment-card {
+      background: var(--g1);
+      border: 1px solid var(--g2);
+      border-radius: var(--r-lg);
+      padding: 1.75rem;
+      border-top: 3px solid var(--blue);
+    }
+    .moment-card-icon { font-size: 1.4rem; margin-bottom: 0.65rem; }
+    .moment-card-title {
+      font-family: var(--ff-head);
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--indigo);
+      margin-bottom: 0.5rem;
+    }
+    .moment-card-body { font-size: 0.88rem; color: var(--g4); line-height: 1.72; }
+
+    /* ─── Section: Building Blocks (dark) ───────────────────────────────────── */
+    .sec-blocks {
+      background: var(--indigo);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .sec-blocks .sec-label  { color: var(--orange); }
+    .sec-blocks .sec-heading { color: var(--white); }
+    .sec-blocks .sec-body   { color: rgba(255,255,255,0.6); }
+
+    .blocks-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 1.1rem;
+      margin-top: 3rem;
+    }
+    .block-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--r-lg);
+      padding: 1.65rem;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .block-card:hover {
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.18);
+    }
+    .block-num {
+      font-family: var(--ff-mono);
+      font-size: 0.58rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 0.65rem;
+    }
+    .block-title {
+      font-family: var(--ff-head);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 0.6rem;
+    }
+    .block-body {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.72;
+      margin-bottom: 1.1rem;
+    }
+
+    /* ─── Chips ──────────────────────────────────────────────────────────────── */
+    .chip-row { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .chip {
+      font-family: var(--ff-mono);
+      font-size: 0.62rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      border-radius: 4px;
+      padding: 0.18rem 0.55rem;
+      border: 1px solid;
+    }
+    .c-orange { color: var(--orange); border-color: rgba(249,162,26,0.35); background: rgba(249,162,26,0.08); }
+    .c-blue   { color: var(--blue);   border-color: rgba(87,192,233,0.35);  background: rgba(87,192,233,0.08);  }
+    .c-green  { color: #4ADE80;       border-color: rgba(74,222,128,0.3);   background: rgba(74,222,128,0.06);  }
+    .c-red    { color: #F87171;       border-color: rgba(248,113,113,0.3);  background: rgba(248,113,113,0.06); }
+    .c-muted  { color: rgba(255,255,255,0.55); border-color: rgba(255,255,255,0.15); background: transparent; }
+
+    /* ─── Section: Scale ─────────────────────────────────────────────────────── */
+    .sec-scale { background: var(--g1); border-bottom: 1px solid var(--g2); }
+    .scale-track {
+      display: flex;
+      margin-top: 2rem;
+      border: 1px solid var(--g2);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+    }
+    .scale-step {
+      flex: 1;
+      padding: 1.5rem 1.2rem;
+      background: var(--white);
+      border-right: 1px solid var(--g2);
+      position: relative;
+    }
+    .scale-step:last-child { border-right: none; }
+    .scale-chevron {
+      position: absolute;
+      right: -10px; top: 50%;
+      transform: translateY(-50%);
+      z-index: 2;
+      width: 20px; height: 20px;
+      background: var(--white);
+      border: 1px solid var(--g2);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.55rem;
+      color: var(--g3);
+    }
+    .scale-step:last-child .scale-chevron { display: none; }
+    .scale-label {
+      font-family: var(--ff-head);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--indigo);
+      margin-bottom: 0.2rem;
+    }
+    .scale-desc  { font-size: 0.78rem; color: var(--g4); line-height: 1.4; }
+
+    /* ─── Final CTA ──────────────────────────────────────────────────────────── */
+    .sec-cta {
+      background: var(--indigo);
+      text-align: center;
+      padding: 6rem 2rem;
+    }
+    .sec-cta .sec-label { color: var(--orange); }
+    .cta-heading {
+      font-family: var(--ff-head);
+      font-size: clamp(2.8rem, 6vw, 4.5rem);
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1.05;
+      margin-bottom: 1.35rem;
+      letter-spacing: -0.015em;
+    }
+    .cta-sub {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.52);
+      line-height: 1.75;
+      max-width: 520px;
+      margin: 0 auto 2.5rem;
+    }
+    .cta-footnote {
+      margin-top: 1.75rem;
+      font-family: var(--ff-mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.25);
+    }
+
+    /* ─── Footer ─────────────────────────────────────────────────────────────── */
+    footer {
+      background: var(--indigo);
+      border-top: 1px solid rgba(255,255,255,0.07);
+      padding: 1.35rem 2rem;
+    }
+    .footer-inner {
+      max-width: var(--mw);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .footer-txt {
+      font-family: var(--ff-mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.22);
+    }
+
+    /* ─── Responsive ─────────────────────────────────────────────────────────── */
+    @media (max-width: 860px) {
+      section { padding: 4rem 1.5rem; }
+      .moment-cards { grid-template-columns: 1fr; }
+      .scale-track { flex-direction: column; border-radius: var(--r); }
+      .scale-step { border-right: none !important; border-bottom: 1px solid var(--g2); }
+      .scale-step:last-child { border-bottom: none; }
+      .scale-chevron { display: none !important; }
+    }
+    @media (max-width: 540px) {
+      section { padding: 3.5rem 1.1rem; }
+      .hdr { padding: 0 1.1rem; }
+      .hero { padding: 3.5rem 1.1rem 3rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="hdr">
+    <div class="brand">
+      <div class="brand-mark">AI</div>
+      <span class="brand-name">KTAF · AI Big Board</span>
+    </div>
+    <a class="btn btn-orange btn-sm" href="bigboard.html">
+      Explore the Board
+      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow rev">
+      <span class="pulse-dot"></span>
+      KTAF · Data + Technology + Innovation
+    </div>
+
+    <h1 class="hero-title rev d1">
+      Exploring new<br><span class="hero-title-accent">possibilities.</span>
+    </h1>
+    <p class="hero-sub rev d2">A directory of AI ideas and prototypes across KTAF.</p>
+    <p class="hero-body rev d3">
+      People across our organization are prototyping new ideas and testing what's possible with AI. This board is a place to share those early concepts, learn from each other, and start a dialogue about the building blocks we need to turn good ideas into sustainable tools.
+    </p>
+    <div class="hero-cta-row rev d4">
+      <a class="btn btn-orange btn-lg" href="bigboard.html">
+        Explore the Board
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+      </a>
+      <span class="scroll-hint">
+        or scroll to learn more <span class="scroll-arrow">↓</span>
+      </span>
+    </div>
+  </div>
+</section>
+
+<section class="sec-moment">
+  <div class="inner">
+    <span class="sec-label rev">Why we're here</span>
+    <h2 class="sec-heading rev">Learning to build<br>together.</h2>
+    <div class="sec-body rev">
+      <p>The barrier to creating functional tools has never been lower. A prototype that once required a developer and a long timeline can now be built by anyone with a good idea. We want to capture that momentum and figure out how to best support it.</p>
+    </div>
+
+    <div class="moment-cards">
+      <div class="moment-card rev d1">
+        <div class="moment-card-icon">💡</div>
+        <div class="moment-card-title">Making work visible</div>
+        <p class="moment-card-body">By putting our ideas in one place, we can find collaborators, avoid duplicating efforts, and celebrate the creative solutions people are designing for their own workflows.</p>
+      </div>
+      <div class="moment-card rev d2">
+        <div class="moment-card-icon">🌱</div>
+        <div class="moment-card-title">Defining the support</div>
+        <p class="moment-card-body">We are using this board to learn. Seeing what gets built helps us understand what kind of hosting, data access, and engineering support our teams actually need to scale their ideas.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec-blocks">
+  <div class="inner">
+    <span class="sec-label rev">The framework</span>
+    <h2 class="sec-heading rev">What makes a tool.</h2>
+    <p class="sec-body rev">
+      To help guide our learning, we're asking a few simple questions about each project. This helps us start a dialogue about the building blocks required to share or scale an idea safely and effectively.
+    </p>
+
+    <div class="blocks-grid">
+
+      <div class="block-card rev d1">
+        <div class="block-num">Block 01</div>
+        <div class="block-title">Current Stage</div>
+        <p class="block-body">Is it a chat prompt, a rough prototype, or actively being used? Knowing the stage helps calibrate expectations.</p>
+        <div class="chip-row">
+          <span class="chip c-muted">Just an Idea</span>
+          <span class="chip c-orange">Prototype</span>
+          <span class="chip c-green">Deployed</span>
+        </div>
+      </div>
+
+      <div class="block-card rev d2">
+        <div class="block-num">Block 02</div>
+        <div class="block-title">Target Audience</div>
+        <p class="block-body">Who is this for? A personal workflow tool requires a very different setup than an org-wide application.</p>
+        <div class="chip-row">
+          <span class="chip c-muted">Just Me</span>
+          <span class="chip c-blue">My Team</span>
+          <span class="chip c-orange">All of KTAF</span>
+        </div>
+      </div>
+
+      <div class="block-card rev d3">
+        <div class="block-num">Block 03</div>
+        <div class="block-title">Data Sensitivity</div>
+        <p class="block-body">What kind of data does this touch? Identifying this early helps us map out the right permissions and privacy steps.</p>
+        <div class="chip-row">
+          <span class="chip c-orange">Student</span>
+          <span class="chip c-blue">Staff</span>
+          <span class="chip c-green">Public</span>
+        </div>
+      </div>
+
+      <div class="block-card rev d4">
+        <div class="block-num">Block 04</div>
+        <div class="block-title">Infrastructure Needs</div>
+        <p class="block-body">Does it need to save data? Does it connect to other systems? This helps us understand the technical lift.</p>
+        <div class="chip-row">
+          <span class="chip c-muted">Standalone</span>
+          <span class="chip c-blue">Has Memory</span>
+          <span class="chip c-orange">Reads Data</span>
+        </div>
+      </div>
+
+      <div class="block-card rev d5">
+        <div class="block-num">Block 05</div>
+        <div class="block-title">Current Blockers</div>
+        <p class="block-body">What do you need to move forward? Naming the hurdle helps us route the right support to you.</p>
+        <div class="chip-row">
+          <span class="chip c-green">No Blockers</span>
+          <span class="chip c-orange">Needs Hosting</span>
+          <span class="chip c-blue">Data Team Support</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="sec-scale">
+  <div class="inner">
+    <span class="sec-label rev">The Journey</span>
+    <h2 class="sec-heading rev">Understanding scale.</h2>
+    <div class="sec-body rev">
+      <p>As ideas grow from a single laptop to broader use, the building blocks they need will naturally evolve. We're here to figure out that progression together.</p>
+    </div>
+
+    <div class="scale-track rev">
+      <div class="scale-step">
+        <div class="scale-label">🙋 Just Me</div>
+        <p class="scale-desc">Personal workflow.</p>
+        <div class="scale-chevron">›</div>
+      </div>
+      <div class="scale-step">
+        <div class="scale-label">👥 My Team</div>
+        <p class="scale-desc">Shared via links/access.</p>
+        <div class="scale-chevron">›</div>
+      </div>
+      <div class="scale-step">
+        <div class="scale-label">🏫 A School</div>
+        <p class="scale-desc">Broader audience reliability.</p>
+        <div class="scale-chevron">›</div>
+      </div>
+      <div class="scale-step">
+        <div class="scale-label">🏢 All of KTAF</div>
+        <p class="scale-desc">Full infrastructure.</p>
+        <div class="scale-chevron">›</div>
+      </div>
+      <div class="scale-step">
+        <div class="scale-label">🌐 External</div>
+        <p class="scale-desc">Public or family facing.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec-cta">
+  <div class="inner">
+    <span class="sec-label rev">Ready to explore</span>
+    <h2 class="cta-heading rev">See what's being<br>built across KTAF.</h2>
+    <p class="cta-sub rev">
+      Browse the directory, share your own prototypes, and help us discover what's possible.
+    </p>
+    <a class="btn btn-orange btn-lg rev d2" href="bigboard.html">
+      Explore the Board
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+    </a>
+    <p class="cta-footnote rev d3">Updated regularly · Submit your project via the intake form linked on the board</p>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <span class="footer-txt">KTAF · Data + Technology + Innovation</span>
+    <span class="footer-txt">AI Big Board · Internal Use</span>
+  </div>
+</footer>
+
+<script>
+// ─── Scroll Reveal ────────────────────────────────────────────────────────────
+const observer = new IntersectionObserver(
+  entries => entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('on');
+      observer.unobserve(e.target);
+    }
+  }),
+  { threshold: 0.1, rootMargin: '0px 0px -32px 0px' }
+);
+document.querySelectorAll('.rev').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
