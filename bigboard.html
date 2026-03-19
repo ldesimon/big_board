@@ -301,11 +301,11 @@
     }
     .card-name {
       font-family: var(--font-head);
-      font-size: 1.05rem;
+      font-size: 1.3rem;
       font-weight: 700;
       color: var(--indigo);
       letter-spacing: .01em;
-      line-height: 1.25;
+      line-height: 1.2;
     }
     .stage-dot {
       width: 8px;
@@ -315,28 +315,21 @@
       margin-top: 4px;
     }
 
+    .card-creator {
+      font-size: .75rem;
+      color: var(--g4);
+    }
+
     .card-oneliner {
       font-size: .85rem;
       color: var(--g5);
       line-height: 1.5;
     }
 
-    .card-meta {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      flex-wrap: wrap;
-    }
-    .meta-who {
-      font-size: .75rem;
-      color: var(--g4);
-    }
-
     .card-chips {
       display: flex;
       flex-wrap: wrap;
       gap: 5px;
-      margin-top: 2px;
     }
     .chip {
       font-family: var(--font-mono);
@@ -450,10 +443,10 @@
     .d-label {
       font-family: var(--font-mono);
       font-size: .7rem;
-      font-weight: 500;
+      font-weight: 700;
       letter-spacing: .06em;
       text-transform: uppercase;
-      color: var(--g4);
+      color: var(--indigo);
       margin-bottom: 6px;
     }
     .d-value {
@@ -603,6 +596,15 @@
         <div class="fg-options" id="opts-next_steps"></div>
       </div>
 
+      <!-- Filter: Savings / Impact -->
+      <div class="filter-group" data-dim="savings_type">
+        <div class="fg-header">
+          <span class="fg-label">Savings / Impact</span>
+          <svg class="fg-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="fg-options" id="opts-savings_type"></div>
+      </div>
+
     </aside><!-- /sidebar -->
 
     <!-- Main grid area -->
@@ -652,6 +654,7 @@
     ai_tools:      new Set(),
     delivery_type: new Set(),
     next_steps:    new Set(),
+    savings_type:  new Set(),
   };
 
   let searchQuery = '';
@@ -676,6 +679,7 @@
     { id: 'ai_tools',      label: 'AI Tools',       multi: true },
     { id: 'delivery_type', label: 'Delivery Type',  multi: true },
     { id: 'next_steps',    label: 'Next Steps',     multi: true },
+    { id: 'savings_type',  label: 'Savings / Impact', multi: true },
   ];
 
   // ── Boot ──────────────────────────────────────────────────────────────────
@@ -683,7 +687,15 @@
   fetch('data.json')
     .then(r => r.json())
     .then(data => {
-      ALL = data.filter(p => p.published !== false);
+      ALL = data.filter(p => p.published !== false).map(p => {
+        const st = [];
+        if (p.savings_dollars) st.push('Cost savings');
+        if (p.savings_hours)   st.push('Time savings');
+        if (p.savings_replacing) st.push('Replacing manual process');
+        if (p.savings_unknown) st.push('Estimated later');
+        p.savings_type = st;
+        return p;
+      });
       filtered = [...ALL];
       buildFilters();
       render();
@@ -867,25 +879,18 @@
     card.dataset.id = p.id;
 
     const stage = STAGE_MAP[p.stage] || { dot: 'dot-idea', label: p.stage };
-    const tools = (p.ai_tools || []).slice(0, 3);
+    const audienceChips = (p.audience || []).slice(0, 2);
     const deptChips = (p.department || []).slice(0, 2);
 
     card.innerHTML = `
-      <div class="card-top">
-        <div class="card-name">${p.project_name}</div>
-        <div class="stage-dot ${stage.dot}" title="${p.stage}"></div>
-      </div>
-      <div class="card-oneliner">${p.one_liner}</div>
-      <div class="card-meta">
-        <span class="meta-who">${p.creator_name}</span>
-        <span style="color:var(--g3)">·</span>
-        <span class="meta-who">${(p.audience || []).join(', ')}</span>
-      </div>
+      <div class="card-name">${p.project_name}</div>
       <div class="card-chips">
-        ${tools.map(t => `<span class="chip chip-blue">${t}</span>`).join('')}
-        ${deptChips.map(d => `<span class="chip chip-indigo">${d}</span>`).join('')}
         <span class="chip chip-grey">${stage.label}</span>
+        ${audienceChips.map(a => `<span class="chip chip-blue">${a}</span>`).join('')}
+        ${deptChips.map(d => `<span class="chip chip-indigo">${d}</span>`).join('')}
       </div>
+      <div class="card-creator">${p.creator_name}</div>
+      <div class="card-oneliner">${p.one_liner}</div>
     `;
 
     card.addEventListener('click', () => openDrawer(p));
