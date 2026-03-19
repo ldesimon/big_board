@@ -551,15 +551,6 @@
         <div class="fg-options" id="opts-stage"></div>
       </div>
 
-      <!-- Filter: Audience -->
-      <div class="filter-group open" data-dim="audience">
-        <div class="fg-header">
-          <span class="fg-label">Audience</span>
-          <svg class="fg-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-        </div>
-        <div class="fg-options" id="opts-audience"></div>
-      </div>
-
       <!-- Filter: Department -->
       <div class="filter-group open" data-dim="department">
         <div class="fg-header">
@@ -569,8 +560,26 @@
         <div class="fg-options" id="opts-department"></div>
       </div>
 
+      <!-- Filter: Creator -->
+      <div class="filter-group" data-dim="creator_name">
+        <div class="fg-header">
+          <span class="fg-label">Creator</span>
+          <svg class="fg-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="fg-options" id="opts-creator_name"></div>
+      </div>
+
+      <!-- Filter: Audience -->
+      <div class="filter-group" data-dim="audience">
+        <div class="fg-header">
+          <span class="fg-label">Audience</span>
+          <svg class="fg-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="fg-options" id="opts-audience"></div>
+      </div>
+
       <!-- Filter: AI Tools -->
-      <div class="filter-group open" data-dim="ai_tools">
+      <div class="filter-group" data-dim="ai_tools">
         <div class="fg-header">
           <span class="fg-label">AI Tools</span>
           <svg class="fg-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
@@ -649,8 +658,9 @@
   // activeFilters[dim] = Set of selected values
   const activeFilters = {
     stage:         new Set(),
-    audience:      new Set(),
     department:    new Set(),
+    creator_name:  new Set(),
+    audience:      new Set(),
     ai_tools:      new Set(),
     delivery_type: new Set(),
     next_steps:    new Set(),
@@ -673,12 +683,13 @@
 
   // Dimension definitions for filter rendering
   const DIMS = [
-    { id: 'stage',         label: 'Stage',         multi: true },
-    { id: 'audience',      label: 'Audience',       multi: true },
-    { id: 'department',    label: 'Department',     multi: true },
-    { id: 'ai_tools',      label: 'AI Tools',       multi: true },
-    { id: 'delivery_type', label: 'Delivery Type',  multi: true },
-    { id: 'next_steps',    label: 'Next Steps',     multi: true },
+    { id: 'stage',         label: 'Stage',            multi: true },
+    { id: 'department',    label: 'Department',       multi: true },
+    { id: 'creator_name',  label: 'Creator',          multi: true },
+    { id: 'audience',      label: 'Audience',         multi: true },
+    { id: 'ai_tools',      label: 'AI Tools',         multi: true },
+    { id: 'delivery_type', label: 'Delivery Type',    multi: true },
+    { id: 'next_steps',    label: 'Next Steps',       multi: true },
     { id: 'savings_type',  label: 'Savings / Impact', multi: true },
   ];
 
