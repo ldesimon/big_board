@@ -344,12 +344,23 @@
     .chip-orange { background: rgba(249,162,26,.15); color: #b07000; }
     .chip-grey   { background: var(--g2);            color: var(--g4); }
 
-    /* Stage color map */
-    .dot-idea     { background: var(--g3); }
-    .dot-early    { background: var(--blue); }
-    .dot-proto    { background: var(--orange); }
-    .dot-in-use   { background: #34c759; }
-    .dot-paused   { background: #ff9500; }
+    /* Stage dot colors */
+    .dot-idea          { background: var(--g3); }
+    .dot-early         { background: var(--blue); }
+    .dot-rough-proto   { background: #c4b5fd; }
+    .dot-working-proto { background: #7c3aed; }
+    .dot-deployed      { background: #7de876; }
+    .dot-deployed-full { background: #3cd52e; }
+    .dot-paused        { background: #ff9500; }
+
+    /* Stage chip colors */
+    .chip-stage-idea         { background: var(--g2);              color: var(--g4); }
+    .chip-stage-early        { background: rgba(87,192,233,.15);   color: var(--blue-2); }
+    .chip-stage-rough        { background: rgba(167,139,250,.16);  color: #8b5cf6; }
+    .chip-stage-working      { background: rgba(124,58,237,.13);   color: #6d28d9; }
+    .chip-stage-deployed     { background: rgba(60,213,46,.15);    color: #1e8c14; }
+    .chip-stage-deployed-full{ background: #3cd52e;                color: #0a4008; font-weight: 600; }
+    .chip-stage-paused       { background: rgba(255,149,0,.13);    color: #b36a00; }
 
     /* Empty state */
     .empty-state {
@@ -672,13 +683,13 @@
   // ── Stage config ──────────────────────────────────────────────────────────
 
   const STAGE_MAP = {
-    'Initial Idea':      { dot: 'dot-idea',   label: 'Initial Idea' },
-    'AI Chat Prompt':    { dot: 'dot-early',  label: 'AI Prompt' },
-    'Rough Prototype':   { dot: 'dot-early',  label: 'Rough Proto' },
-    'Working Prototype': { dot: 'dot-proto',  label: 'Prototype' },
-    'Deployed':          { dot: 'dot-in-use', label: 'Deployed' },
-    'Fully Deployed':    { dot: 'dot-in-use', label: 'Fully Deployed' },
-    'Archived / Paused': { dot: 'dot-paused', label: 'Paused' },
+    'Initial Idea':      { dot: 'dot-idea',          chip: 'chip-stage-idea',          label: 'Initial Idea' },
+    'AI Chat Prompt':    { dot: 'dot-early',          chip: 'chip-stage-early',         label: 'AI Prompt' },
+    'Rough Prototype':   { dot: 'dot-rough-proto',   chip: 'chip-stage-rough',         label: 'Rough Proto' },
+    'Working Prototype': { dot: 'dot-working-proto', chip: 'chip-stage-working',       label: 'Prototype' },
+    'Deployed':          { dot: 'dot-deployed',       chip: 'chip-stage-deployed',      label: 'Deployed' },
+    'Fully Deployed':    { dot: 'dot-deployed-full',  chip: 'chip-stage-deployed-full', label: 'Fully Deployed' },
+    'Archived / Paused': { dot: 'dot-paused',         chip: 'chip-stage-paused',        label: 'Paused' },
   };
 
   // Dimension definitions for filter rendering
@@ -896,7 +907,7 @@
     card.innerHTML = `
       <div class="card-name">${p.project_name}</div>
       <div class="card-chips">
-        <span class="chip chip-grey">${stage.label}</span>
+        <span class="chip ${stage.chip}">${stage.label}</span>
         ${audienceChips.map(a => `<span class="chip chip-blue">${a}</span>`).join('')}
         ${deptChips.map(d => `<span class="chip chip-indigo">${d}</span>`).join('')}
       </div>
