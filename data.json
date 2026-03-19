@@ -2,7 +2,7 @@
   {
     "id": "p006",
     "project_name": "Supercharging Semantic Layer Development",
-    "one_liner": "Uses Claude to analyze existing reporting views and auto-generate star schema fact and dimension tables   cutting the manual work of semantic layer development from months to weeks.",
+    "one_liner": "Uses Claude to analyze existing reporting views and auto-generate star schema fact and dimension tables ‚Äî cutting the manual work of semantic layer development from months to weeks.",
     "stage": "Rough Prototype",
     "audience": [
       "My team"
@@ -11,7 +11,7 @@
       "DTI"
     ],
     "department_other": "",
-    "success_story": "Semantic layer development moves from months to weeks   Claude analyzes reporting views and drafts new fact and dimension tables without manual spec for every schema change.",
+    "success_story": "Semantic layer development moves from months to weeks ‚Äî Claude analyzes reporting views and drafts new fact and dimension tables without manual spec for every schema change.",
     "savings_dollars": "",
     "savings_hours": "Cuts months of manual schema work to weeks",
     "savings_replacing": "",
@@ -29,9 +29,9 @@
     ],
     "delivery_type_other": "",
     "next_steps": [
-      "Accessing data   need to pull data automatically or via API"
+      "Accessing data ‚Äî need to pull data automatically or via API"
     ],
-    "next_steps_notes": "Detailed plan at GitHub link. All pieces in place   needs team validation meeting. CB2 workflow documented.",
+    "next_steps_notes": "Detailed plan at GitHub link. All pieces in place ‚Äî needs team validation meeting. CB2 workflow documented.",
     "creator_name": "Cristina",
     "share_link": "https://github.com/TEAMSchools/teamster/issues/3432",
     "published": true,
@@ -40,7 +40,7 @@
   {
     "id": "p007",
     "project_name": "Ops Walkthrough Custom Form",
-    "one_liner": "Custom observation form for school operations walkthroughs that routes data directly to Google Sheets   replacing paper logs and manual rekeying.",
+    "one_liner": "Custom observation form for school operations walkthroughs that routes data directly to Google Sheets ‚Äî replacing paper logs and manual rekeying.",
     "stage": "Working Prototype",
     "audience": [
       "My team"
@@ -49,7 +49,7 @@
       "Operations"
     ],
     "department_other": "",
-    "success_story": "Ops team logs walkthrough observations by area directly from phone   data flows to the tracking sheet automatically, without rekeying or paper collection.",
+    "success_story": "Ops team logs walkthrough observations by area directly from phone ‚Äî data flows to the tracking sheet automatically, without rekeying or paper collection.",
     "savings_dollars": "",
     "savings_hours": "Improves current google form approach",
     "savings_replacing": "",
@@ -65,7 +65,7 @@
     ],
     "delivery_type_other": "",
     "next_steps": [
-      "Accessing data   need to pull data automatically or via API"
+      "Accessing data ‚Äî need to pull data automatically or via API"
     ],
     "next_steps_notes": "Weekly use during standard observation protocols. Needs dynamic staff list and ID matching for downstream reporting.",
     "creator_name": "Ryan",
@@ -76,7 +76,7 @@
   {
     "id": "p008",
     "project_name": "NJSLA Test Prep Generator",
-    "one_liner": "Generates randomized grade-level NJSLA practice quizzes from a 900+ item bank   replacing the manual process of pulling and formatting test prep materials each week.",
+    "one_liner": "Generates randomized grade-level NJSLA practice quizzes from a 900+ item bank ‚Äî replacing the manual process of pulling and formatting test prep materials each week.",
     "stage": "Working Prototype",
     "audience": [
       "My school or office"
@@ -85,7 +85,7 @@
       "Academics"
     ],
     "department_other": "",
-    "success_story": "Math teachers and instructional leaders generate a differentiated quiz for a specific grade and standard in under a minute   weekly test prep no longer eats into planning time.",
+    "success_story": "Math teachers and instructional leaders generate a differentiated quiz for a specific grade and standard in under a minute ‚Äî weekly test prep no longer eats into planning time.",
     "savings_dollars": "",
     "savings_hours": "Weekly planning time saved on test prep",
     "savings_replacing": "Manual test prep formatting process",
@@ -111,8 +111,8 @@
   },
   {
     "id": "p010",
-    "project_name": "Focus SIS   Centralized Database of FLDOE Data Fields",
-    "one_liner": "Parses 600+ FLDOE state PDFs into a centralized searchable database of student and staff data fields   eliminating manual lookup for the Focus implementation team.",
+    "project_name": "Focus SIS ‚Äî Centralized Database of FLDOE Data Fields",
+    "one_liner": "Parses 600+ FLDOE state PDFs into a centralized searchable database of student and staff data fields ‚Äî eliminating manual lookup for the Focus implementation team.",
     "stage": "Working Prototype",
     "audience": [
       "My team"
@@ -121,7 +121,7 @@
       "DTI"
     ],
     "department_other": "",
-    "success_story": "Focus implementation team and Miami compliance director can search FLDOE data field requirements in one place   no more digging through hundreds of state PDFs for every compliance question.",
+    "success_story": "Focus implementation team and Miami compliance director can search FLDOE data field requirements in one place ‚Äî no more digging through hundreds of state PDFs for every compliance question.",
     "savings_dollars": "",
     "savings_hours": "",
     "savings_replacing": "Manual lookup across 600+ state PDFs",
@@ -142,6 +142,120 @@
     "next_steps_notes": "PDF parser accuracy and FLDOE field change monitoring are key next steps.",
     "creator_name": "Laszlo",
     "share_link": "https://ldesimon.github.io/host-public/fl_doe_glossary.html",
+    "published": true,
+    "submitted_at": "2026-03-19"
+  },
+  {
+    "id": "p011",
+    "project_name": "Focus SIS ‚Äî Project Manager Assistant",
+    "one_liner": "Claude-powered assistant with a curated knowledge base for the KIPP Miami Focus SIS transition ‚Äî handles strategic planning, communications, and stakeholder mapping in context.",
+    "stage": "Working Prototype",
+    "audience": [
+      "My team"
+    ],
+    "department": [
+      "DTI"
+    ],
+    "department_other": "",
+    "success_story": "Focus transition team can draft communications, map stakeholders, and plan next steps without rebuilding context from scratch every session.",
+    "savings_dollars": "",
+    "savings_hours": "",
+    "savings_replacing": "",
+    "savings_unknown": false,
+    "ai_tools": [
+      "Claude"
+    ],
+    "ai_tools_other": "",
+    "data_context": [
+      "Project files (emails, memos, docs)"
+    ],
+    "data_context_other": "Focus transition knowledge base",
+    "delivery_type": [
+      "A prompt or conversation ‚Äî nothing to hand off"
+    ],
+    "delivery_type_other": "",
+    "next_steps": [],
+    "next_steps_notes": "Currently used by Laszlo; expanding to full Focus transition team. Future Asana and Google Sheets integrations planned.",
+    "creator_name": "Laszlo",
+    "share_link": "",
+    "published": true,
+    "submitted_at": "2026-03-19"
+  },
+  {
+    "id": "p012",
+    "project_name": "Tableau Upstream Calculation Converter",
+    "one_liner": "Extracts thousands of calculations that live only on our Tableau Workbooks and provides suggestions on how to either: move the calculations upstream to the BQ views OR creating/adding to a dim/fact table(s) for the semantic layer.",
+    "stage": "Rough Prototype",
+    "audience": [
+      "My team"
+    ],
+    "department": [
+      "DTI"
+    ],
+    "department_other": "",
+    "success_story": "We will be able to significantly reduce the effort it will take to convert the thousands of isolated, Tableau-only calculations to either a database field or a semantic layer calculation so they can be used on other reports.",
+    "savings_dollars": "",
+    "savings_hours": "",
+    "savings_replacing": "Manual retrieval and manual analysis of thousands of Tableau-only calculated fields",
+    "savings_unknown": false,
+    "ai_tools": [
+      "Claude"
+    ],
+    "ai_tools_other": "",
+    "data_context": [
+      "Connected data (live feed or API)",
+      "Claude plugins or skills"
+    ],
+    "data_context_other": "",
+    "delivery_type": [
+      "A script or workflow",
+      "Code (script, notebook, integration)"
+    ],
+    "delivery_type_other": "",
+    "next_steps": [
+      "Not sure yet"
+    ],
+    "next_steps_notes": "",
+    "creator_name": "Gaby R.",
+    "share_link": "",
+    "published": true,
+    "submitted_at": "2026-03-19"
+  },
+  {
+    "id": "p013",
+    "project_name": "Career Launch Survey Workflow",
+    "one_liner": "Our key metric for our career team is whether an alum has a \"strong launch,\" determined by their salary and/or grad school status. Survey completion has increased substantially, but in order to handle data for alum working in the network, large amounts of data sometimes need to be added without being able to go through the survey. This allows KFwd stakeholders to paste career launch data into a spreadsheet that will then be treated as survey responses.",
+    "stage": "Fully Deployed",
+    "audience": [
+      "Staff"
+    ],
+    "department": [
+      "KIPP Forward"
+    ],
+    "department_other": "",
+    "success_story": "Saves the career team substantially on data entry time.",
+    "savings_dollars": "",
+    "savings_hours": "",
+    "savings_replacing": "",
+    "savings_unknown": false,
+    "ai_tools": [
+      "Claude"
+    ],
+    "ai_tools_other": "",
+    "data_context": [
+      "Other"
+    ],
+    "data_context_other": "GitHub integration for the Teamster repo",
+    "delivery_type": [
+      "Other"
+    ],
+    "delivery_type_other": "spreadsheet",
+    "next_steps": [
+      "Good to go — no changes needed"
+    ],
+    "next_steps_notes": "",
+    "creator_name": "Anthony Walters",
+    "share_link": "",
     "published": true,
     "submitted_at": "2026-03-19"
   }
