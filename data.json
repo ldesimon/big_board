@@ -258,5 +258,88 @@
     "share_link": "",
     "published": true,
     "submitted_at": "2026-03-19"
+  },
+  {
+    "id": "p014",
+    "project_name": "Career Conversations App",
+    "one_liner": "Helps the KIPP Forward Career team transition from a Google sheet to an updating app for tracking career milestones for alumni",
+    "stage": "Rough Prototype",
+    "audience": [
+      "Staff"
+    ],
+    "department": [
+      "KIPP Forward"
+    ],
+    "department_other": "",
+    "success_story": "Gives KF team fully updated data and a fresh roster of alums that need support. Allows KF to roll-up and track efforts across cohorts and counselors.",
+    "savings_dollars": "",
+    "savings_hours": "",
+    "savings_replacing": "Replacing a GSheet",
+    "savings_unknown": false,
+    "ai_tools": [
+      "Claude"
+    ],
+    "ai_tools_other": "",
+    "data_context": [
+      "Connected data (live feed or API)"
+    ],
+    "data_context_other": "",
+    "delivery_type": [
+      "A simple webpage or app"
+    ],
+    "delivery_type_other": "",
+    "next_steps": [
+      "Good to go — no changes needed",
+      "Deploying it — need to host or share more effectively",
+      "Permissions and logins — need to control access"
+    ],
+    "next_steps_notes": "",
+    "creator_name": "Cristina B",
+    "share_link": "https://github.com/TEAMSchools/career_app",
+    "published": true,
+    "submitted_at": "2026-03-19"
+  },
+  {
+    "id": "p015",
+    "project_name": "Job Groupings Website",
+    "one_liner": "A github.io website that explains what the Job Groupings project is all about. Check it out: https://teamschools.github.io/job_groupings/website/index.html",
+    "stage": "Working Prototype",
+    "audience": [
+      "Staff"
+    ],
+    "department": [
+      "Operations",
+      "HR & Ops",
+      "Talent"
+    ],
+    "department_other": "",
+    "success_story": "This tool is a way to more effectively communicate ideas and initiatives. Instead of a slide deck or long email memo, it allows stakeholders to explore things more interactively. We can embed search tools and visualizations to convey rationale for a project or initiative more clearly.",
+    "savings_dollars": "",
+    "savings_hours": "",
+    "savings_replacing": "Emails and Slides",
+    "savings_unknown": false,
+    "ai_tools": [
+      "Claude"
+    ],
+    "ai_tools_other": "",
+    "data_context": [
+      "Project files (emails, memos, docs)",
+      "Connected data (live feed or API)",
+      "Other"
+    ],
+    "data_context_other": "I included a script that I wrote with Claude Code for codifying the job grouping rules.",
+    "delivery_type": [
+      "A simple webpage or app",
+      "Code (script, notebook, integration)"
+    ],
+    "delivery_type_other": "",
+    "next_steps": [
+      "Good to go — no changes needed"
+    ],
+    "next_steps_notes": "",
+    "creator_name": "Kevin Verhoff",
+    "share_link": "https://teamschools.github.io/job_groupings/website/index.html",
+    "published": true,
+    "submitted_at": "2026-03-19"
   }
 ]
