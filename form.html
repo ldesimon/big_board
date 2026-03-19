@@ -485,7 +485,7 @@
   // ── Data collection ──
   function v(id) { const el = document.getElementById(id); return el ? el.value.trim() : ''; }
   function checked(name) {
-    return [...document.querySelectorAll(`input[name="${name}"]:checked`)].map(i => i.value).join(', ');
+    return [...document.querySelectorAll(`input[name="${name}"]:checked`)].map(i => i.value).join(' | ');
   }
 
   function collectData() {
