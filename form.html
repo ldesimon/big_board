@@ -28,8 +28,10 @@
     .hdr{max-width:800px;margin:0 auto;padding:.85rem 2rem;display:flex;align-items:center;justify-content:space-between}
     .brand{font-family:var(--ff-head);font-size:1.2rem;font-weight:700;color:var(--indigo);letter-spacing:.01em}
     .brand span{color:var(--orange)}
-    .btn-back{display:inline-flex;align-items:center;gap:.35rem;font-size:.8rem;font-weight:600;color:var(--g4);transition:color .15s}
-    .btn-back:hover{color:var(--indigo)}
+    .nav-tabs{display:flex;gap:3px;background:var(--g1);border:1px solid var(--g2);border-radius:9px;padding:3px}
+    .nav-tab{font-family:var(--ff-body);font-size:.8rem;font-weight:600;padding:.3rem 1.1rem;border-radius:6px;color:var(--g4);background:transparent;transition:color .15s,background .15s;white-space:nowrap}
+    .nav-tab:hover:not(.active){color:var(--indigo);background:var(--g2)}
+    .nav-tab.active{background:var(--orange);color:var(--white)}
 
     /* ── intro bar ── */
     .intro-bar{background:var(--indigo);padding:3rem 2rem 2.5rem}
@@ -155,10 +157,11 @@
 <header>
   <div class="hdr">
     <div class="brand">Big<span>Board</span> | KTAF</div>
-    <a class="btn-back" href="bigboard.html">
-      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
-      Back to Board
-    </a>
+    <nav class="nav-tabs">
+      <a class="nav-tab" href="index.html">Home</a>
+      <a class="nav-tab active" href="form.html">Submit</a>
+      <a class="nav-tab" href="bigboard.html">Explore</a>
+    </nav>
   </div>
 </header>
 

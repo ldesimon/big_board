@@ -78,25 +78,11 @@
       letter-spacing: .01em;
     }
     .brand span { color: var(--orange); }
-    .header-right { display: flex; align-items: center; gap: 12px; }
-    .hdr-link {
-      font-size: .8rem;
-      font-weight: 500;
-      color: var(--g4);
-      transition: color .15s;
-    }
-    .hdr-link:hover { color: var(--indigo); }
-    .btn-submit {
-      height: 34px;
-      padding: 0 14px;
-      background: var(--orange);
-      color: var(--indigo);
-      font-weight: 700;
-      font-size: .8rem;
-      border-radius: var(--r-sm);
-      transition: background .15s;
-    }
-    .btn-submit:hover { background: var(--orange-2); }
+    .header-right { display: flex; align-items: center; }
+    .nav-tabs { display: flex; gap: 3px; background: var(--g1); border: 1px solid var(--g2); border-radius: 9px; padding: 3px; }
+    .nav-tab { font-family: var(--font-body); font-size: .8rem; font-weight: 600; padding: .3rem 1.1rem; border-radius: 6px; color: var(--g4); background: transparent; transition: color .15s, background .15s; white-space: nowrap; }
+    .nav-tab:hover:not(.active) { color: var(--indigo); background: var(--g2); }
+    .nav-tab.active { background: var(--orange); color: var(--white); }
 
     /* ── Layout shell ───────────────────────────────────────────────── */
     .shell {
@@ -534,8 +520,11 @@
   <header class="header">
     <a href="index.html" class="brand">Big<span>Board</span></a>
     <div class="header-right">
-      <a href="index.html" class="hdr-link">← What is this?</a>
-      <a href="form.html" class="btn-submit">Submit a project</a>
+      <nav class="nav-tabs">
+        <a class="nav-tab" href="index.html">Home</a>
+        <a class="nav-tab" href="form.html">Submit</a>
+        <a class="nav-tab active" href="bigboard.html">Explore</a>
+      </nav>
     </div>
   </header>
 

@@ -111,12 +111,12 @@
     .btn-outline {
       background: transparent;
       color: var(--indigo);
-      border: 1.5px solid var(--g2);
+      border: 1.5px solid var(--g3);
       box-shadow: none;
     }
     .btn-outline:hover {
       background: var(--g1);
-      border-color: var(--g3);
+      border-color: var(--g4);
       transform: translateY(-2px);
       box-shadow: 0 4px 14px rgba(0,0,0,0.07);
     }
@@ -174,6 +174,35 @@
       letter-spacing: 0.07em;
       text-transform: uppercase;
       color: var(--indigo);
+    }
+
+    /* ─── Nav Tabs ──────────────────────────────────────────────────────────── */
+    .nav-tabs {
+      display: flex;
+      gap: 3px;
+      background: var(--g1);
+      border: 1px solid var(--g2);
+      border-radius: 9px;
+      padding: 3px;
+    }
+    .nav-tab {
+      font-family: var(--ff-body);
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 0.3rem 1.1rem;
+      border-radius: 6px;
+      color: var(--g4);
+      background: transparent;
+      transition: color 0.15s, background 0.15s;
+      white-space: nowrap;
+    }
+    .nav-tab:hover:not(.active) {
+      color: var(--indigo);
+      background: var(--g2);
+    }
+    .nav-tab.active {
+      background: var(--orange);
+      color: var(--white);
     }
 
     /* ─── Hero ───────────────────────────────────────────────────────────────── */
@@ -481,10 +510,11 @@
       <div class="brand-mark">AI</div>
       <span class="brand-name">KTAF · AI Big Board</span>
     </div>
-    <a class="btn btn-orange btn-sm" href="bigboard.html">
-      Explore the Board
-      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
-    </a>
+    <nav class="nav-tabs">
+      <a class="nav-tab active" href="index.html">Home</a>
+      <a class="nav-tab" href="form.html">Submit</a>
+      <a class="nav-tab" href="bigboard.html">Explore</a>
+    </nav>
   </div>
 </header>
 
@@ -507,7 +537,7 @@
         Explore the Board
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
       </a>
-      <a class="btn btn-outline btn-lg" href="https://ldesimon.github.io/big_board/form.html">
+      <a class="btn btn-outline btn-lg" href="form.html">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg>
         Submit a Project
       </a>
