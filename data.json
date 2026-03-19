@@ -221,7 +221,7 @@
   },
   {
     "id": "p012",
-    "project_name": "Semntic Layer Workflow | Tableau Converter",
+    "project_name": "Semantic Layer Workflow | Tableau Converter",
     "one_liner": "Claude Code workflow to extract thousands of calculations that live only on our Tableau Workbooks and provides suggestions on how to either: move the calculations upstream to the BQ views OR creating/adding to a dim/fact table(s) for the semantic layer.",
     "stage": "Rough Prototype",
     "audience": [
