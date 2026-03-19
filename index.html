@@ -108,10 +108,34 @@
       transform: translateY(-2px);
       box-shadow: 0 6px 20px rgba(249,162,26,0.38);
     }
+    .btn-outline {
+      background: transparent;
+      color: var(--indigo);
+      border: 1.5px solid var(--g2);
+      box-shadow: none;
+    }
+    .btn-outline:hover {
+      background: var(--g1);
+      border-color: var(--g3);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 14px rgba(0,0,0,0.07);
+    }
+    .btn-ghost {
+      background: transparent;
+      color: var(--g4);
+      box-shadow: none;
+      gap: 0.35rem;
+    }
+    .btn-ghost:hover {
+      color: var(--indigo);
+      transform: translateY(-1px);
+    }
     .btn-sm  { padding: 0.42rem 1rem;   font-size: 0.8rem;  }
     .btn-lg  { padding: 1rem 2.4rem;    font-size: 1.05rem;
                box-shadow: 0 4px 22px rgba(249,162,26,0.32); }
     .btn-lg:hover { box-shadow: 0 8px 28px rgba(249,162,26,0.42); }
+    .btn-outline.btn-lg { box-shadow: none; }
+    .btn-outline.btn-lg:hover { box-shadow: 0 4px 14px rgba(0,0,0,0.07); }
 
     /* ─── Header ─────────────────────────────────────────────────────────────── */
     header {
@@ -236,21 +260,16 @@
       max-width: 600px;
       margin-bottom: 2.5rem;
     }
-    .hero-cta-row { display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap; }
-    .scroll-hint {
-      font-family: var(--ff-mono);
-      font-size: 0.62rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--g3);
+    .hero-cta-row {
       display: flex;
       align-items: center;
-      gap: 0.4rem;
+      gap: 0.85rem;
+      flex-wrap: wrap;
     }
-    .scroll-arrow { animation: bounce 1.9s ease-in-out infinite; }
+    .btn-ghost .scroll-arrow { animation: bounce 1.9s ease-in-out infinite; display: inline-block; }
     @keyframes bounce {
       0%, 100% { transform: translateY(0); }
-      50%       { transform: translateY(5px); }
+      50%       { transform: translateY(4px); }
     }
 
     /* ─── Section: The Moment ────────────────────────────────────────────────── */
@@ -488,9 +507,13 @@
         Explore the Board
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
       </a>
-      <span class="scroll-hint">
-        or scroll to learn more <span class="scroll-arrow">↓</span>
-      </span>
+      <a class="btn btn-outline btn-lg" href="https://ldesimon.github.io/big_board/form.html">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg>
+        Submit a Project
+      </a>
+      <a class="btn btn-ghost btn-lg" href="#framework">
+        How It Works <span class="scroll-arrow">↓</span>
+      </a>
     </div>
   </div>
 </section>
@@ -518,7 +541,7 @@
   </div>
 </section>
 
-<section class="sec-blocks">
+<section class="sec-blocks" id="framework">
   <div class="inner">
     <span class="sec-label rev">The framework</span>
     <h2 class="sec-heading rev">What makes a tool.</h2>
