@@ -1,8 +1,8 @@
 [
   {
     "id": "p006",
-    "project_name": "Supercharging Semantic Layer Development",
-    "one_liner": "Uses Claude to analyze existing reporting views and auto-generate star schema fact and dimension tables ‚Äî cutting the manual work of semantic layer development from months to weeks.",
+    "project_name": "Semantic Layer Workflow | Supercharge Development",
+    "one_liner": "Use Claude code workflows to analyze existing reporting views and auto-generate star schema fact and dimension tables; Cutting the manual work of semantic layer development from months to weeks.",
     "stage": "Rough Prototype",
     "audience": [
       "My team"
@@ -11,9 +11,9 @@
       "DTI"
     ],
     "department_other": "",
-    "success_story": "Semantic layer development moves from months to weeks ‚Äî Claude analyzes reporting views and drafts new fact and dimension tables without manual spec for every schema change.",
+    "success_story": "Semantic layer development moves from months to weeks ‚ Claude analyzes reporting views and drafts new fact and dimension tables without manual spec for every schema change.",
     "savings_dollars": "",
-    "savings_hours": "Cuts months of manual schema work to weeks",
+    "savings_hours": ">100",
     "savings_replacing": "",
     "savings_unknown": false,
     "ai_tools": [
@@ -32,7 +32,7 @@
       "Accessing data ‚Äî need to pull data automatically or via API"
     ],
     "next_steps_notes": "Detailed plan at GitHub link. All pieces in place ‚Äî needs team validation meeting. CB2 workflow documented.",
-    "creator_name": "Cristina",
+    "creator_name": "Cristina B",
     "share_link": "https://github.com/TEAMSchools/teamster/issues/3432",
     "published": true,
     "submitted_at": "2026-03-19"
@@ -110,8 +110,46 @@
     "submitted_at": "2026-03-19"
   },
   {
+    "id": "p009",
+    "project_name": "KIPP Forward Tracker App",
+    "one_liner": "Next.js app replacing a manual Google Sheet for tracking KIPP Forward alumni career milestones ‚Äî with Salesforce data integration for automatic student info rollups.",
+    "stage": "Working Prototype",
+    "audience": [
+      "My team"
+    ],
+    "department": [
+      "KIPP Forward"
+    ],
+    "department_other": "",
+    "success_story": "KIPP Forward team tracks alumni career prep milestones with auto-synced Salesforce data ‚Äî no more maintaining a spreadsheet that's perpetually out of date.",
+    "savings_dollars": "",
+    "savings_hours": "",
+    "savings_replacing": "Manual Google Sheet tracking",
+    "savings_unknown": false,
+    "ai_tools": [
+      "Claude"
+    ],
+    "ai_tools_other": "",
+    "data_context": [
+      "Connected data (live feed or API)"
+    ],
+    "data_context_other": "Salesforce",
+    "delivery_type": [
+      "An interactive app"
+    ],
+    "delivery_type_other": "",
+    "next_steps": [
+      "Deploying it ‚Äî need to host or share more effectively, Permissions and logins ‚Äî need to control access"
+    ],
+    "next_steps_notes": "Needs OAuth (Google auth) and hosting config before production. Automation for upcoming graduation dates is a planned next step.",
+    "creator_name": "Cristina B",
+    "share_link": "",
+    "published": true,
+    "submitted_at": "2026-03-19"
+  },
+  {
     "id": "p010",
-    "project_name": "Focus SIS ‚Äî Centralized Database of FLDOE Data Fields",
+    "project_name": "Focus SIS | Centralized Database of FLDOE Data Fields",
     "one_liner": "Parses 600+ FLDOE state PDFs into a centralized searchable database of student and staff data fields ‚Äî eliminating manual lookup for the Focus implementation team.",
     "stage": "Working Prototype",
     "audience": [
@@ -147,7 +185,7 @@
   },
   {
     "id": "p011",
-    "project_name": "Focus SIS ‚Äî Project Manager Assistant",
+    "project_name": "Focus SIS | AI Project Manager Assistant",
     "one_liner": "Claude-powered assistant with a curated knowledge base for the KIPP Miami Focus SIS transition ‚Äî handles strategic planning, communications, and stakeholder mapping in context.",
     "stage": "Working Prototype",
     "audience": [
@@ -183,8 +221,8 @@
   },
   {
     "id": "p012",
-    "project_name": "Tableau Upstream Calculation Converter",
-    "one_liner": "Extracts thousands of calculations that live only on our Tableau Workbooks and provides suggestions on how to either: move the calculations upstream to the BQ views OR creating/adding to a dim/fact table(s) for the semantic layer.",
+    "project_name": "Semntic Layer Workflow | Tableau Converter",
+    "one_liner": "Claude Code workflow to extract thousands of calculations that live only on our Tableau Workbooks and provides suggestions on how to either: move the calculations upstream to the BQ views OR creating/adding to a dim/fact table(s) for the semantic layer.",
     "stage": "Rough Prototype",
     "audience": [
       "My team"
@@ -339,6 +377,47 @@
     "next_steps_notes": "",
     "creator_name": "Kevin Verhoff",
     "share_link": "https://teamschools.github.io/job_groupings/website/index.html",
+    "published": true,
+    "submitted_at": "2026-03-19"
+  },
+  {
+    "id": "p016",
+    "project_name": "Miami Budgeting App",
+    "one_liner": "Forecasts payroll budgeting in for Miami Teachers",
+    "stage": "Deployed",
+    "audience": [
+      "Staff"
+    ],
+    "department": [
+      "Operations",
+      "Finance"
+    ],
+    "department_other": "",
+    "success_story": "It allows us to model different scenerios for budgeting",
+    "savings_dollars": "",
+    "savings_hours": "",
+    "savings_replacing": "Google Sheets + Excel",
+    "savings_unknown": false,
+    "ai_tools": [
+      "Claude",
+      "Other"
+    ],
+    "ai_tools_other": "Previous similar pojects",
+    "data_context": [
+      "Project files (emails, memos, docs)",
+      "Other"
+    ],
+    "data_context_other": "Gsheets with budget information",
+    "delivery_type": [
+      "A simple webpage or app"
+    ],
+    "delivery_type_other": "",
+    "next_steps": [
+      "Not sure yet"
+    ],
+    "next_steps_notes": "",
+    "creator_name": "Kevin Verhoff",
+    "share_link": "https://kipp-miami-salary-simulation.streamlit.app/",
     "published": true,
     "submitted_at": "2026-03-19"
   }
