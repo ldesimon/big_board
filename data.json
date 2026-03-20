@@ -932,5 +932,44 @@
     "share_link": "https://claude.ai/artifacts/559f9d3e-41cf-413e-af8a-beb79210d512",
     "published": true,
     "submitted_at": "2026-03-20"
+  },
+  {
+    "id": "p029",
+    "project_name": "Crisis Comms",
+    "one_liner": "Generates draft crisis comms",
+    "stage": "Deployed",
+    "audience": [
+      "Staff"
+    ],
+    "department": [
+      "Academics",
+      "Operations"
+    ],
+    "department_other": "",
+    "success_story": "Saves regional leaders time in writing comms; generates writing aligned to our desired tone and guidance",
+    "savings_dollars": "",
+    "savings_hours": "4 hours/month",
+    "savings_replacing": "Replaces a human writing these",
+    "savings_unknown": false,
+    "ai_tools": [
+      "Claude"
+    ],
+    "ai_tools_other": "",
+    "data_context": [
+      "Project files (emails, memos, docs)"
+    ],
+    "data_context_other": "",
+    "delivery_type": [
+      "An interactive app"
+    ],
+    "delivery_type_other": "",
+    "next_steps": [
+      "Good to go — no changes needed"
+    ],
+    "next_steps_notes": "",
+    "creator_name": "Sophie",
+    "share_link": "https://crisis-comms-tool-updated.vercel.app/",
+    "published": true,
+    "submitted_at": "2026-03-20"
   }
 ]
