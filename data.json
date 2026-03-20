@@ -720,7 +720,7 @@
     "id": "p024",
     "project_name": "Data Report Mock Up | Suspensions Analysis [DRAFT]",
     "one_liner": "Proof of concept of working with Claude to generate multilevel analysis slide deck and generate replicable query code to audit results",
-    "stage": "Rough Prototype",
+    "stage": "Deployed",
     "audience": [
       "My team"
     ],
@@ -886,5 +886,51 @@
     "share_link": "",
     "published": true,
     "submitted_at": "2026-03-19"
+  },
+  {
+    "id": "p028",
+    "project_name": "Scheduler",
+    "one_liner": "It will nearly instantaneously schedule a meeting for any size group of people by scanning their Outlooks to find mutually available time or conflicts that can be rescheduled.",
+    "stage": "AI Chat Prompt",
+    "audience": [
+      "Staff"
+    ],
+    "department": [
+      "Academics",
+      "Operations",
+      "Finance",
+      "HR & Ops",
+      "Talent",
+      "DTI",
+      "KIPP Forward",
+      "TC",
+      "Other"
+    ],
+    "department_other": "",
+    "success_story": "Saves time and headache by finding mutually free time instantaneously - no more going back and forth to find common time or looking at people's outlooks and seeing blocks but not knowing if they're really free time o rnot",
+    "savings_dollars": "",
+    "savings_hours": "1 hour/month",
+    "savings_replacing": "Calendly for some people, admin support with scheduling for a few individuals",
+    "savings_unknown": false,
+    "ai_tools": [
+      "Claude"
+    ],
+    "ai_tools_other": "",
+    "data_context": [
+      "Connected data (live feed or API)"
+    ],
+    "data_context_other": "",
+    "delivery_type": [
+      "An interactive app"
+    ],
+    "delivery_type_other": "",
+    "next_steps": [
+      "Accessing data — need to pull data automatically or via API"
+    ],
+    "next_steps_notes": "It needs to sync to Outlook (our calendars) for this to work (for now, I've built a prototype without that sync)",
+    "creator_name": "Sophie",
+    "share_link": "https://claude.ai/artifacts/559f9d3e-41cf-413e-af8a-beb79210d512",
+    "published": true,
+    "submitted_at": "2026-03-20"
   }
 ]
