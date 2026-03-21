@@ -40,7 +40,7 @@
   {
     "id": "p007",
     "project_name": "Ops Walkthrough Custom Form",
-    "one_liner": "Custom observation form for school operations walkthroughs that routes data directly to Google Sheets ‚Äî replacing paper logs and manual rekeying.",
+    "one_liner": "Custom observation form for school operations walkthroughs that routes data directly to Google Sheets ‚replacing paper logs and manual rekeying.",
     "stage": "Working Prototype",
     "audience": [
       "My team"
@@ -969,6 +969,120 @@
     "next_steps_notes": "",
     "creator_name": "Sophie",
     "share_link": "https://crisis-comms-tool-updated.vercel.app/",
+    "published": true,
+    "submitted_at": "2026-03-20"
+  },
+  {
+    "id": "p030",
+    "project_name": "Staff Computer Backup Archiving",
+    "one_liner": "Automate the process of archiving the computer backups for departed staff members from our backup system, Carbonite, to Google storage.",
+    "stage": "Initial Idea",
+    "audience": [
+      "My team"
+    ],
+    "department": [
+      "DTI"
+    ],
+    "department_other": "",
+    "success_story": "This would eliminate a very tedious manual process that a Tech Specialist has to complete for each departed staff member's backups.",
+    "savings_dollars": "",
+    "savings_hours": "~2 hours per departed staff member",
+    "savings_replacing": "",
+    "savings_unknown": false,
+    "ai_tools": [
+      "Other"
+    ],
+    "ai_tools_other": "Hopefully Claude Code",
+    "data_context": [
+      "Other"
+    ],
+    "data_context_other": "TBD",
+    "delivery_type": [
+      "Code (script, notebook, integration)",
+      "A Claude artifact"
+    ],
+    "delivery_type_other": "",
+    "next_steps": [
+      "Not sure yet"
+    ],
+    "next_steps_notes": "",
+    "creator_name": "Ashley Milun",
+    "share_link": "",
+    "published": true,
+    "submitted_at": "2026-03-20"
+  },
+  {
+    "id": "p031",
+    "project_name": "Retrieval of ISP Invoices",
+    "one_liner": "Automate the process for logging into each ISP billing portal to download invoices and submit to Accounts Payable.",
+    "stage": "Initial Idea",
+    "audience": [
+      "My team"
+    ],
+    "department": [
+      "DTI",
+      "Other"
+    ],
+    "department_other": "Accounts Payable",
+    "success_story": "Eliminate Jordyn Marlin needing to manually log into each ISP billing portal once a month to download invoices that she then submits as AP tickets. She currently needs to complete this at least 10 times per month.",
+    "savings_dollars": "",
+    "savings_hours": "~5 hours per month",
+    "savings_replacing": "",
+    "savings_unknown": false,
+    "ai_tools": [
+      "Other"
+    ],
+    "ai_tools_other": "TBD",
+    "data_context": [
+      "Other"
+    ],
+    "data_context_other": "TBD",
+    "delivery_type": [
+      "Code (script, notebook, integration)",
+      "A Claude artifact"
+    ],
+    "delivery_type_other": "",
+    "next_steps": [],
+    "next_steps_notes": "",
+    "creator_name": "Ashley Milun",
+    "share_link": "",
+    "published": true,
+    "submitted_at": "2026-03-20"
+  },
+  {
+    "id": "p033",
+    "project_name": "Sports at KIPP Summary and Survey",
+    "one_liner": "Helps me gather data on sports participation and lets us see which sports are being offered now, rough participation numbers, and gender breakdown of participants.",
+    "stage": "Deployed",
+    "audience": [
+      "Whole org",
+      "Staff"
+    ],
+    "department": [
+      "Other"
+    ],
+    "department_other": "Student Experience",
+    "success_story": "Allows us to survey and track number of kids with access to sports in our schools. Makes it easier to collect data and update in real time.  Helps with grant-writing and eventually to show progress to goal of higher levels of participation, plus gender equity.",
+    "savings_dollars": "",
+    "savings_hours": "",
+    "savings_replacing": "Easier than google form, plus updates output immediately.",
+    "savings_unknown": false,
+    "ai_tools": [
+      "Claude"
+    ],
+    "ai_tools_other": "",
+    "data_context": [
+      "None — no data needed"
+    ],
+    "data_context_other": "",
+    "delivery_type": [],
+    "delivery_type_other": "",
+    "next_steps": [
+      "Not sure yet"
+    ],
+    "next_steps_notes": "",
+    "creator_name": "Ryan Hill",
+    "share_link": "https://rhill-sys.github.io/Sports-at-KIPPNJ/hub/",
     "published": true,
     "submitted_at": "2026-03-20"
   }
