@@ -1079,5 +1079,217 @@
     "share_link": "https://rhill-sys.github.io/KIPP-Connect/",
     "published": true,
     "submitted_at": "2026-03-20"
+  },
+  {
+    "id": "p035",
+    "project_name": "AP Toolkit — Weekly Planning Platform",
+    "one_liner": "Gives APs a single dashboard to track student mastery, flag observation gaps, schedule interventions, and plan their week.",
+    "stage": "Working Prototype",
+    "audience": [
+      "Staff"
+    ],
+    "department": [
+      "Academics"
+    ],
+    "department_other": "",
+    "success_story": "APs spend less time hunting across spreadsheets, Tableau, Illuminate, i-ready, SMG, etc. for data collection, and have daily + weekly insights presented to them to help inform workflows, planning, and analysis. This enables more time spent coaching and in classrooms. Saves each instructional AP an estimated 3-11 hours per week of admin/compliance/data collection, while also enhancing the rigor of IP, looking at student work, classroom observations, and data analysis.",
+    "savings_dollars": "",
+    "savings_hours": "3-11 hours per week per Instructional Assistant Principal",
+    "savings_replacing": "",
+    "savings_unknown": false,
+    "ai_tools": [
+      "Claude",
+      "Other"
+    ],
+    "ai_tools_other": "Vercel, Supabase, Github, Learning Commons Knowledge Graph",
+    "data_context": [
+      "Project files (emails, memos, docs)",
+      "Data files (static, downloaded manually)",
+      "Connected data (live feed or API)",
+      "Claude plugins or skills"
+    ],
+    "data_context_other": "",
+    "delivery_type": [
+      "An interactive app"
+    ],
+    "delivery_type_other": "",
+    "next_steps": [
+      "Accessing data — need to pull data automatically or via API",
+      "Permissions and logins — need to control access"
+    ],
+    "next_steps_notes": "",
+    "creator_name": "Kevin Shaw",
+    "share_link": "https://ap-toolkit.vercel.app/",
+    "published": true,
+    "submitted_at": "2026-03-22"
+  },
+  {
+    "id": "p036",
+    "project_name": "KIPP South Florida Financial Model",
+    "one_liner": "Multi-year financial projection tool tracking enrollment, FEFP revenue, expenses, covenant health metrics, and cash flow from FY25 through FY33 for KIPP South Florida’s expansion.  This directly supports KIPP Miami leadership strategic planning and growth decision making, finance team with financial planning, builds a collaboration bridge between KIPP Miami leadership, finance team, and innovation team.",
+    "stage": "Rough Prototype",
+    "audience": [],
+    "department": [
+      "Academics",
+      "Operations",
+      "Finance",
+      "DTI"
+    ],
+    "department_other": "",
+    "success_story": "Leadership can stress-test expansion scenarios and monitor covenant compliance (Days Cash on Hand, Debt Service Coverage Ratio) without waiting for finance team to build custom reports. Turns a quarterly reporting cycle into on-demand visibility across 2 Miami-Dade schools and future Broward expansion. Saves finance leads an estimated 10-20 hours per quarter.",
+    "savings_dollars": "",
+    "savings_hours": "10-20 hours/quarter for finance leads",
+    "savings_replacing": "",
+    "savings_unknown": false,
+    "ai_tools": [
+      "Claude",
+      "Other"
+    ],
+    "ai_tools_other": "Claude, Supabase, Vercel, Github",
+    "data_context": [
+      "Project files (emails, memos, docs)",
+      "Data files (static, downloaded manually)",
+      "Connected data (live feed or API)"
+    ],
+    "data_context_other": "",
+    "delivery_type": [
+      "An interactive app"
+    ],
+    "delivery_type_other": "",
+    "next_steps": [
+      "Permissions and logins — need to control access"
+    ],
+    "next_steps_notes": "Built with Vercel, GitHub, and Claude API. Interactive financial modeling that would typically require specialized consultants or complex Excel workbooks.",
+    "creator_name": "Kevin Shaw",
+    "share_link": "https://kipp-sofla-model.vercel.app",
+    "published": true,
+    "submitted_at": "2026-03-23"
+  },
+  {
+    "id": "p037",
+    "project_name": "Khan Weekly Progress Monitor",
+    "one_liner": "Tracks weekly student progress on Khan Academy to surface engagement trends and identify students falling behind before it shows up in formal assessments.",
+    "stage": "Working Prototype",
+    "audience": [
+      "My team"
+    ],
+    "department": [
+      "Academics"
+    ],
+    "department_other": "",
+    "success_story": "Gives Camden leadership and math innovation fellow weekly visibility into Khan Academy usage without manually checking the platform or download excel files and doing ad-hoc analysis across multiple data sources. Flags disengagement early.",
+    "savings_dollars": "",
+    "savings_hours": "",
+    "savings_replacing": "",
+    "savings_unknown": false,
+    "ai_tools": [
+      "Claude",
+      "Other"
+    ],
+    "ai_tools_other": "Claude, Supabase, Vercel, Github",
+    "data_context": [
+      "Project files (emails, memos, docs)",
+      "Data files (static, downloaded manually)",
+      "Connected data (live feed or API)"
+    ],
+    "data_context_other": "",
+    "delivery_type": [
+      "A simple webpage or app"
+    ],
+    "delivery_type_other": "",
+    "next_steps": [
+      "Permissions and logins — need to control access"
+    ],
+    "next_steps_notes": "",
+    "creator_name": "Kevin Shaw",
+    "share_link": "https://khan-workbench.vercel.app/",
+    "published": true,
+    "submitted_at": "2026-03-23"
+  },
+  {
+    "id": "p038",
+    "project_name": "Promise Observer",
+    "one_liner": "Analyzes Promise Team meeting recordings against a structured rubric — scoring facilitation quality, data use, action step clarity, and accountability across schools.",
+    "stage": "Rough Prototype",
+    "audience": [
+      "Staff"
+    ],
+    "department": [
+      "Academics",
+      "Operations"
+    ],
+    "department_other": "",
+    "success_story": "Turns subjective meeting observations into consistent, rubric-aligned feedback across schools. Leadership can compare meeting quality without sitting in every meeting. Identifies patterns in referrals, intervention logging, and at-risk student tracking.",
+    "savings_dollars": "",
+    "savings_hours": "",
+    "savings_replacing": "",
+    "savings_unknown": false,
+    "ai_tools": [
+      "Claude",
+      "Other"
+    ],
+    "ai_tools_other": "Claude, Supabase, Vercel, Github",
+    "data_context": [
+      "Project files (emails, memos, docs)",
+      "Data files (static, downloaded manually)",
+      "Connected data (live feed or API)",
+      "Other"
+    ],
+    "data_context_other": "audio/video",
+    "delivery_type": [
+      "An interactive app"
+    ],
+    "delivery_type_other": "",
+    "next_steps": [
+      "Accessing data — need to pull data automatically or via API",
+      "Permissions and logins — need to control access"
+    ],
+    "next_steps_notes": "",
+    "creator_name": "Kevin Shaw",
+    "share_link": "https://promise-observer.vercel.app/",
+    "published": true,
+    "submitted_at": "2026-03-23"
+  },
+  {
+    "id": "p039",
+    "project_name": "KIPP NJ/Miami AI Hub",
+    "one_liner": "The all-staff platform for AI at KIPP — puts student and staff AI policies, the tool request process, AI Ambassador nominations, and community feedback in one place. Built so staff, families, and students can find what they need about AI at KIPP in under 60 seconds.",
+    "stage": "Rough Prototype",
+    "audience": [
+      "Whole org"
+    ],
+    "department": [
+      "Academics",
+      "DTI",
+      "TC"
+    ],
+    "department_other": "",
+    "success_story": "Staff stop filing ad-hoc support tickets about AI access and get clear answers in one place. The Standard Tool Decision Process is visible and accessible. AI Ambassadors can self-nominate. Families and students have a voice in shaping our AI policies. Replaces scattered emails, PDFs, and Slack threads with a single source of truth that DTI controls and updates monthly.",
+    "savings_dollars": "",
+    "savings_hours": "",
+    "savings_replacing": "",
+    "savings_unknown": false,
+    "ai_tools": [
+      "Claude"
+    ],
+    "ai_tools_other": "",
+    "data_context": [
+      "Project files (emails, memos, docs)",
+      "Data files (static, downloaded manually)"
+    ],
+    "data_context_other": "",
+    "delivery_type": [
+      "An interactive app"
+    ],
+    "delivery_type_other": "",
+    "next_steps": [
+      "Deploying it — need to host or share more effectively",
+      "Permissions and logins — need to control access"
+    ],
+    "next_steps_notes": "",
+    "creator_name": "Kevin Shaw",
+    "share_link": "https://kipp-ai-hub.vercel.app/",
+    "published": true,
+    "submitted_at": "2026-03-23"
   }
 ]
