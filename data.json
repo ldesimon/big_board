@@ -466,49 +466,6 @@
     "submitted_at": "2026-03-19"
   },
   {
-    "id": "p018",
-    "project_name": "KIPP Connect",
-    "one_liner": "Single stream of communication to help connect across KIPP NJ & Miami",
-    "stage": "Rough Prototype",
-    "audience": [
-      "Whole org"
-    ],
-    "department": [
-      "TC"
-    ],
-    "department_other": "",
-    "success_story": "Amazing things are happening across KIPP NJ & Miami: this will improved staff engagement and visibility into the stories and people across our org.",
-    "savings_dollars": "",
-    "savings_hours": "",
-    "savings_replacing": "Multiple emails, communication tools that are not cutting through the noise",
-    "savings_unknown": false,
-    "ai_tools": [
-      "Claude"
-    ],
-    "ai_tools_other": "",
-    "data_context": [
-      "Project files (emails, memos, docs)",
-      "Connected data (live feed or API)"
-    ],
-    "data_context_other": "",
-    "delivery_type": [
-      "A simple webpage or app",
-      "An interactive app"
-    ],
-    "delivery_type_other": "",
-    "next_steps": [
-      "Deploying it — need to host or share more effectively",
-      "Accessing data — need to pull data automatically or via API",
-      "Permissions and logins — need to control access",
-      "Design help — look and feel needs work"
-    ],
-    "next_steps_notes": "",
-    "creator_name": "Ryan",
-    "share_link": "https://drive.google.com/file/d/1mcqoFtBmFZwxiSrS6jd8wub3NU2RzK3L/view?usp=sharing",
-    "published": true,
-    "submitted_at": "2026-03-19"
-  },
-  {
     "id": "p019",
     "project_name": "Values Stories",
     "one_liner": "Share exemplars from working with awesome teammates.  Post how a teammate is living our org values.",
@@ -1083,6 +1040,43 @@
     "next_steps_notes": "",
     "creator_name": "Ryan Hill",
     "share_link": "https://rhill-sys.github.io/Sports-at-KIPPNJ/hub/",
+    "published": true,
+    "submitted_at": "2026-03-20"
+  },
+  {
+    "id": "p034",
+    "project_name": "KIPP Connect",
+    "one_liner": "Internal comms app prototype for teammates to understand curren performance, get live updates, see values-based shoutouts of teammates, access resources, etc.",
+    "stage": "Rough Prototype",
+    "audience": [
+      "Whole org"
+    ],
+    "department": [
+      "Other"
+    ],
+    "department_other": "whole org",
+    "success_story": "Allows us to give real-time updates (snow day tomorrow! Complete your open enrollment!), shout out teammates for exemplary values-orientation, access important resources, etc.",
+    "savings_dollars": "",
+    "savings_hours": "",
+    "savings_replacing": "",
+    "savings_unknown": false,
+    "ai_tools": [
+      "Claude"
+    ],
+    "ai_tools_other": "",
+    "data_context": [],
+    "data_context_other": "",
+    "delivery_type": [
+      "A simple webpage or app"
+    ],
+    "delivery_type_other": "",
+    "next_steps": [
+      "Not sure yet",
+      "Design help — look and feel needs work"
+    ],
+    "next_steps_notes": "I can figure out most if not all of how to make it go live - will need input from teammates to figure out which features or design elements to add.",
+    "creator_name": "Ryan Hill",
+    "share_link": "https://rhill-sys.github.io/KIPP-Connect/",
     "published": true,
     "submitted_at": "2026-03-20"
   }
