@@ -1318,7 +1318,7 @@
     "data_context": [
       "Connected data (live feed or API)"
     ],
-    "data_context_other": "",
+    "data_context_other": "Pulls data from Asana project",
     "delivery_type": [
       "A simple webpage or app"
     ],
