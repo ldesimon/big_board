@@ -1291,5 +1291,46 @@
     "share_link": "https://kipp-ai-hub.vercel.app/",
     "published": true,
     "submitted_at": "2026-03-23"
+  },
+  {
+    "id": "p040",
+    "project_name": "Data Mart + Semantic Layer Dashboard",
+    "one_liner": "It connects to our semantic layer implementation project in Asana and provides non-Data team stakeholders with insight on project progress and also some basic concepts behind the transition from Tableau to semantic layer metrics.",
+    "stage": "Deployed",
+    "audience": [
+      "My team",
+      "Whole org"
+    ],
+    "department": [
+      "DTI",
+      "TC"
+    ],
+    "department_other": "",
+    "success_story": "Non-data teams have a good grasp of how the project will work and can follow along as we define metrics with them and make them available to tools. They can also see where we are in the process and flag things to prioritize.",
+    "savings_dollars": "",
+    "savings_hours": "",
+    "savings_replacing": "Ad hoc updates and explainers.",
+    "savings_unknown": false,
+    "ai_tools": [
+      "Claude"
+    ],
+    "ai_tools_other": "",
+    "data_context": [
+      "Connected data (live feed or API)"
+    ],
+    "data_context_other": "",
+    "delivery_type": [
+      "A simple webpage or app"
+    ],
+    "delivery_type_other": "",
+    "next_steps": [
+      "Good to go — no changes needed",
+      "Deploying it — need to host or share more effectively"
+    ],
+    "next_steps_notes": "",
+    "creator_name": "Cristina",
+    "share_link": "https://cristinabaldor.github.io/semantic-layer-dashboard/",
+    "published": true,
+    "submitted_at": "2026-03-27"
   }
 ]
