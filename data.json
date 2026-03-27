@@ -1,43 +1,5 @@
 [
   {
-    "id": "p006",
-    "project_name": "Semantic Layer Workflow | Supercharge Development",
-    "one_liner": "Use Claude code workflows to analyze existing reporting views and auto-generate star schema fact and dimension tables; Cutting the manual work of semantic layer development from months to weeks.",
-    "stage": "Rough Prototype",
-    "audience": [
-      "My team"
-    ],
-    "department": [
-      "DTI"
-    ],
-    "department_other": "",
-    "success_story": "Semantic layer development moves from months to weeks ‚ Claude analyzes reporting views and drafts new fact and dimension tables without manual spec for every schema change.",
-    "savings_dollars": "",
-    "savings_hours": ">100",
-    "savings_replacing": "",
-    "savings_unknown": false,
-    "ai_tools": [
-      "Claude"
-    ],
-    "ai_tools_other": "",
-    "data_context": [
-      "Connected data (live feed or API)"
-    ],
-    "data_context_other": "Reporting views",
-    "delivery_type": [
-      "Code (script, notebook, integration)"
-    ],
-    "delivery_type_other": "",
-    "next_steps": [
-      "Accessing data ‚Äî need to pull data automatically or via API"
-    ],
-    "next_steps_notes": "Detailed plan at GitHub link. All pieces in place ‚Äî needs team validation meeting. CB2 workflow documented.",
-    "creator_name": "Cristina B",
-    "share_link": "https://github.com/TEAMSchools/teamster/issues/3432",
-    "published": true,
-    "submitted_at": "2026-03-19"
-  },
-  {
     "id": "p007",
     "project_name": "Ops Walkthrough Custom Form",
     "one_liner": "Custom observation form for school operations walkthroughs that routes data directly to Google Sheets ‚replacing paper logs and manual rekeying.",
@@ -787,59 +749,6 @@
     ],
     "next_steps_notes": "",
     "creator_name": "Charlie Bini",
-    "share_link": "",
-    "published": true,
-    "submitted_at": "2026-03-19"
-  },
-  {
-    "id": "p027",
-    "project_name": "Idea-to-Report Protocol",
-    "one_liner": "Will support accelerating, standardizing, and streamlining the process of taking an organizational need and converting into an appropriate report (app, Tableau, Google Sheet, other).",
-    "stage": "Initial Idea",
-    "audience": [
-      "My team",
-      "Whole org"
-    ],
-    "department": [
-      "Academics",
-      "Operations",
-      "Finance",
-      "HR & Ops",
-      "Talent",
-      "DTI",
-      "KIPP Forward",
-      "TC"
-    ],
-    "department_other": "",
-    "success_story": "We will minimize roadblocks to creating and iterating on a data report request by using AI to help us rapidly prototype, convert business needs policy documents to actionable coding next steps, help analyze the quality of data and data models to highlight possible issues before they can derail a project, and overall make the process more transparent and accessible to a larger number of stakeholders.",
-    "savings_dollars": "",
-    "savings_hours": "",
-    "savings_replacing": "A mismatch system of disconnected/siloed Google Docs, Slack conversations, meetings, emails.",
-    "savings_unknown": false,
-    "ai_tools": [
-      "Claude"
-    ],
-    "ai_tools_other": "",
-    "data_context": [
-      "Project files (emails, memos, docs)",
-      "Data files (static, downloaded manually)",
-      "Connected data (live feed or API)",
-      "Claude plugins or skills"
-    ],
-    "data_context_other": "",
-    "delivery_type": [
-      "A script or workflow",
-      "A document",
-      "An interactive app",
-      "Code (script, notebook, integration)",
-      "A Claude artifact"
-    ],
-    "delivery_type_other": "",
-    "next_steps": [
-      "Not sure yet"
-    ],
-    "next_steps_notes": "",
-    "creator_name": "Gaby R.",
     "share_link": "",
     "published": true,
     "submitted_at": "2026-03-19"
