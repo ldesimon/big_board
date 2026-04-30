@@ -1034,27 +1034,24 @@
   },
   {
     "id": "p036",
-    "project_name": "KIPP South Florida Financial Model",
-    "one_liner": "Multi-year financial projection tool tracking enrollment, FEFP revenue, expenses, covenant health metrics, and cash flow from FY25 through FY33 for KIPP South Florida’s expansion.  This directly supports KIPP Miami leadership strategic planning and growth decision making, finance team with financial planning, builds a collaboration bridge between KIPP Miami leadership, finance team, and innovation team.",
+    "project_name": "KIPP South Florida Financial Model – Front End Data Visualizations",
+    "one_liner": "Illustrative example for data visualizations of long-term financial modeling, integrated with google sheets",
     "stage": "Rough Prototype",
     "audience": [],
     "department": [
-      "Academics",
-      "Operations",
-      "Finance",
-      "DTI"
+      "Finance, Regional Leadership"
     ],
     "department_other": "",
-    "success_story": "Leadership can stress-test expansion scenarios and monitor covenant compliance (Days Cash on Hand, Debt Service Coverage Ratio) without waiting for finance team to build custom reports. Turns a quarterly reporting cycle into on-demand visibility across 2 Miami-Dade schools and future Broward expansion. Saves finance leads an estimated 10-20 hours per quarter.",
+    "success_story": "More clarity to long-term forecasts",
     "savings_dollars": "",
-    "savings_hours": "10-20 hours/quarter for finance leads",
+    "savings_hours": "",
     "savings_replacing": "",
     "savings_unknown": false,
     "ai_tools": [
       "Claude",
       "Other"
     ],
-    "ai_tools_other": "Claude, Supabase, Vercel, Github",
+    "ai_tools_other": "Claude, Apps Script, Vercel, Github",
     "data_context": [
       "Project files (emails, memos, docs)",
       "Data files (static, downloaded manually)",
@@ -1068,7 +1065,7 @@
     "next_steps": [
       "Permissions and logins — need to control access"
     ],
-    "next_steps_notes": "Built with Vercel, GitHub, and Claude API. Interactive financial modeling that would typically require specialized consultants or complex Excel workbooks.",
+    "next_steps_notes": "Built with Vercel, Apps Script, GitHub, and Claude API. Interactive financial modeling that would typically require specialized consultants",
     "creator_name": "Kevin Shaw",
     "share_link": "https://kipp-sofla-model.vercel.app",
     "published": true,
@@ -1241,5 +1238,120 @@
     "share_link": "https://cristinabaldor.github.io/semantic-layer-dashboard/",
     "published": true,
     "submitted_at": "2026-03-27"
+  },
+  {
+    "id": "p041",
+    "project_name": "Staff Device Reconciliation",
+    "one_liner": "Helps Techs to identify staff device assignment inconsistencies with instructions for resolving them. Also identifies staff devices that are due to be upgraded to assist with spring purchasing conversations with DSOs.",
+    "stage": "Deployed",
+    "audience": [
+      "My team"
+    ],
+    "department": [
+      "DTI"
+    ],
+    "department_other": "",
+    "success_story": "Saves the Techs time and allows our device assignment records (asset management, Intune, and JAMF) to be more accurate. Also helps to better inform our regions about their staff device needs.",
+    "savings_dollars": "",
+    "savings_hours": "",
+    "savings_replacing": "",
+    "savings_unknown": false,
+    "ai_tools": [
+      "Claude"
+    ],
+    "ai_tools_other": "",
+    "data_context": [
+      "Data files (static, downloaded manually)"
+    ],
+    "data_context_other": "",
+    "delivery_type": [
+      "An interactive app"
+    ],
+    "delivery_type_other": "",
+    "next_steps": [],
+    "next_steps_notes": "",
+    "creator_name": "Cody Tanner",
+    "share_link": "staff-device-reconciliation.vercel.app/",
+    "published": true,
+    "submitted_at": "2026-04-02"
+  },
+  {
+    "id": "p042",
+    "project_name": "Florida Sponsor Matched Student List Matcher\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t Address Matcher",
+    "one_liner": "Operations and Compliance must match students from state lists (using only first name, last name, and DOB) to determine meal assistance eligibility—if one student at an address qualifies, all do. This Google AppScript automates that matching process.",
+    "stage": "Fully Deployed",
+    "audience": [
+      "Staff"
+    ],
+    "department": [
+      "Operations",
+      "Other"
+    ],
+    "department_other": "Compliance",
+    "success_story": "Saves operations teams what would be at least a few days of work manually looking up all 1,300 addresses and finding matches.",
+    "savings_dollars": "",
+    "savings_hours": "40",
+    "savings_replacing": "Manual GSheet process with lookups to student feed.",
+    "savings_unknown": false,
+    "ai_tools": [
+      "Claude"
+    ],
+    "ai_tools_other": "",
+    "data_context": [
+      "Data files (static, downloaded manually)"
+    ],
+    "data_context_other": "",
+    "delivery_type": [
+      "A script or workflow"
+    ],
+    "delivery_type_other": "",
+    "next_steps": [
+      "Good to go — no changes needed"
+    ],
+    "next_steps_notes": "Here's a quick summary of the work:\n\nEvery reporting period:\n\nPaste the new matched export into the matched tab, non-matched into unmatched\nRun Coresidence → Run check\n\nWhat it checks:\n\nLooks up every student from both FDACS exports in the feed using a 3-tier match: exact (DOB+name) → fuzzy (DOB+first only) → name only\nCompares feed addresses — apartment numbers preserved so different units in the same building don't count\nOne row per non-matched student in the results, with all matched co-residents at that address collapsed into a single cell\n\nThings to watch for in results:\n\nnote = fuzzy name match or name only — worth a manual check before submitting\nNM Unresolved sheet — students not found in the feed at all, likely genuine attrition but worth a spot check\nNM Ambiguous sheet — DOB+name hit multiple feed records, needs manual resolution",
+    "creator_name": "Cristina",
+    "share_link": "https://docs.google.com/spreadsheets/d/1_WtL41s02GLBk5sfUL_tObFZqHL9U9KP9bWz80ujBfo/edit?usp=sharing",
+    "published": true,
+    "submitted_at": "2026-04-08"
+  },
+  {
+    "id": "p043",
+    "project_name": "KIPP Similar Schools Metric Dashboard",
+    "one_liner": "The new gold standard in comparing schools with similar demographics is called Similar Schools Metric.  This is a dashboard that shows them for all KIPP regions.",
+    "stage": "Fully Deployed",
+    "audience": [
+      "My team",
+      "Staff"
+    ],
+    "department": [
+      "Academics",
+      "Other"
+    ],
+    "department_other": "",
+    "success_story": "Gives us the ability to compare with other kipp regions - especially valuable with some fundraising and board uses.",
+    "savings_dollars": "",
+    "savings_hours": "",
+    "savings_replacing": "It's replacing the KIPP Foundation's inability to provide this data in a usable format.",
+    "savings_unknown": false,
+    "ai_tools": [
+      "Claude"
+    ],
+    "ai_tools_other": "",
+    "data_context": [
+      "Data files (static, downloaded manually)"
+    ],
+    "data_context_other": "",
+    "delivery_type": [
+      "A simple webpage or app"
+    ],
+    "delivery_type_other": "",
+    "next_steps": [
+      "Good to go — no changes needed"
+    ],
+    "next_steps_notes": "",
+    "creator_name": "Ryan Hill",
+    "share_link": "https://rhill-sys.github.io/KIPP-SSM-Tracker-v3/",
+    "published": true,
+    "submitted_at": "2026-04-18"
   }
 ]
